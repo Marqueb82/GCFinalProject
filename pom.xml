@@ -94,6 +94,11 @@
 			<artifactId>discovery-model-java</artifactId>
 			<version>0.1.8</version>
 		</dependency>
+		<dependency>
+			<artifactId>okhttp</artifactId>
+			<groupId>com.squareup.okhttp3</groupId>
+    		<version>3.1.2</version>
+		</dependency>
 
 	</dependencies>
 

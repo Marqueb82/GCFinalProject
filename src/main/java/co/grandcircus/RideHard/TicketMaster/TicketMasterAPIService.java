@@ -17,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.ticketmaster.api.Version;
 import com.ticketmaster.api.discovery.DiscoveryApiConfiguration;
 import com.ticketmaster.api.discovery.operation.ByIdOperation;
@@ -77,8 +76,8 @@ public class TicketMasterAPIService {
     Preconditions.checkNotNull(apiKey, "The API key is mandatory");
     this.apiKey = apiKey;
     this.configuration = configuration;
-    this.mapper = new ObjectMapper() //
-        .registerModule(new JodaModule()) //
+    this.mapper = new ObjectMapper()
+//        .registerModule(new JodaModule()) TODO add something here if dates don't work.
         .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     this.client = new OkHttpClient.Builder()
