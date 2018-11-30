@@ -1,5 +1,5 @@
 # Grand Circus Final Project
-This is a ReadMe. It can be used to explain what the project is and how it's evolved, in a general sense. Also communicating basica ideas about the application's function. 
+This is a ReadMe. It can be used to explain what the project is and how it's evolved, in a general sense. Also communicating basic ideas about the application's function. 
 
 ### Features
 -What the app does can go here.
