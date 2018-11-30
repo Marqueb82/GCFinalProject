@@ -84,6 +84,16 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.ticketmaster.api</groupId>
+			<artifactId>discovery-java</artifactId>
+			<version>0.1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ticketmaster.api</groupId>
+			<artifactId>discovery-model-java</artifactId>
+			<version>0.1.8</version>
+		</dependency>
 
 	</dependencies>
 

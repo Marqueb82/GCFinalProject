@@ -1,19 +1,29 @@
 package co.grandcircus.RideHard;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ticketmaster.api.discovery.operation.SearchEventsOperation;
+import com.ticketmaster.api.discovery.response.PagedResponse;
+import com.ticketmaster.discovery.model.Events;
+
+import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
 import co.grandcircus.RideHard.entity.EnumsAreFun;
 
 @Controller
 public class RideController {
+	
+	@Autowired
+	private TicketMasterAPIService tmAPI;
 	
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -27,9 +37,14 @@ public class RideController {
 	
 	//potential controller to demonstrate Ticket Master API call
 	@RequestMapping("/ticketmasterAPI")
-	public ModelAndView tmAPI(@RequestParam("somedata") String probably) {
+	public ModelAndView tmAPI() throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
-		
+		SearchEventsOperation seo = new SearchEventsOperation();
+		seo.keyword("justin timberlake");
+		System.out.println("check");
+		PagedResponse<Events> pr = tmAPI.searchEvents(seo);
+		System.out.println("checktwo");
+		mv.addObject("pagedresponse", pr);
 		return mv;
 	}
 	
