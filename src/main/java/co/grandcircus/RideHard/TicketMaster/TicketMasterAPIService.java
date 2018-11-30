@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -58,14 +60,16 @@ public class TicketMasterAPIService {
   private Logger logger = LoggerFactory.getLogger(TicketMasterAPIService.class);
 
   private static final String USER_AGENT = "User-Agent";
-  private final String apiKeyQueryParam;
-  private final OkHttpClient client;
-  private final DiscoveryApiConfiguration configuration;
-  private final ObjectMapper mapper;
-  private final String apiKey;
-  private final HashMap<Class<?>, String> pathByType;
+  private  String apiKeyQueryParam;
+  private  OkHttpClient client;
+  private  DiscoveryApiConfiguration configuration;
+  private  ObjectMapper mapper;
+  private  String apiKey;
+  private  HashMap<Class<?>, String> pathByType;
 
-  public TicketMasterAPIService(String apiKey) {
+
+  @Autowired
+  public TicketMasterAPIService(@Value("${apiKey}") String apiKey) {
     this(apiKey, DiscoveryApiConfiguration.builder().build());
   }
 
