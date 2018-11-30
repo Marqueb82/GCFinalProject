@@ -44,7 +44,8 @@ public class RideController {
 		System.out.println("check");
 		PagedResponse<Events> pr = tmAPI.searchEvents(seo);
 		System.out.println("checktwo");
-		mv.addObject("pagedresponse", pr);
+		String test = pr.getJsonPayload();
+		mv.addObject("pagedresponse", test);
 		return mv;
 	}
 	
