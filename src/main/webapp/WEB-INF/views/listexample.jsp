@@ -29,7 +29,7 @@
 			>
 				<tr>
 					<td>${item}</td>
-					<td>item's name could go here ${ item })</td>
+					<td>item's name could go here ${ item }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -56,7 +56,26 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Hash Key</th>
+				<th>Hash Value</th>
+			</tr>
+		</thead>
 
+		<tbody>
+			<c:forEach
+				items="${SecondOne}"
+				var="intrigue"
+			>
+				<tr>
+					<td>Key = ${intrigue.key}</td>
+					<td>value = ${intrigue.value}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
 </body>
 </html>

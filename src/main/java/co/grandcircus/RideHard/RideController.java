@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.grandcircus.RideHard.entity.EnumsAreFun;
+
 @Controller
 public class RideController {
 	
@@ -77,6 +79,7 @@ public class RideController {
 	public ModelAndView lists() {
 		ModelAndView mv = new ModelAndView("listexample");
 		List<Integer> numbersList = new ArrayList<Integer>();
+		//list items are displayed in the order they were place in the list.
 		numbersList.add(4);
 		numbersList.add(5);
 		numbersList.add(8);
@@ -86,15 +89,30 @@ public class RideController {
 		mv.addObject("numbers", numbersList);
 		
 		Map<String, Integer> hm = new HashMap<>();
-		//Don't know what determines what order the HashMap displays in the JSP.
+		//Don't know what determines what order the HashMap displays in the JSP. Seems to do whatever it feels like, unless the key is in numerical order? Will probably lost several hours sleep on this this weekend, in the meantime, would could use HashMaps because HashMaps are neat.  
 		hm.put("What", 100);
 		hm.put("order", 99);
 		hm.put("are", 98);
 		hm.put("these", 999);
 		hm.put("in", 97);
 		mv.addObject("Dec6th", hm);
+		
+		//In fact, let's make a HashMap of Enums! Obviously, the most superior object in all of OOP.
+		Map<Enum, Character> hm2 = new HashMap<>();
+		hm2.put(EnumsAreFun.WHAT, 'a');
+		hm2.put(EnumsAreFun.YOU, 'c');
+		hm2.put(EnumsAreFun.THOUGHT, 'e');
+		hm2.put(EnumsAreFun.I, 'g');
+		hm2.put(EnumsAreFun.WAS, 'b');
+		hm2.put(EnumsAreFun.JOKING, 'c');
+		hm2.put(EnumsAreFun.ABOUT, 'e');
+		hm2.put(EnumsAreFun.THE, 'f');
+		hm2.put(EnumsAreFun.ENUMS, 'h');
+		mv.addObject("SecondOne", hm2);
 				
 		return mv;
+		
+		//This is what it's like being in a group with me. Hope you're having fun!
 	}
 	
 }
