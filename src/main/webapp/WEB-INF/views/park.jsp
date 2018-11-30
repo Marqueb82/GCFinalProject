@@ -7,6 +7,6 @@
 <title>Park</title>
 </head>
 <body>
-	<h2>${park }</h2>
+	<h2>${ park }</h2>
 </body>
 </html>

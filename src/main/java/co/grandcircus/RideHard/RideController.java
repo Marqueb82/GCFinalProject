@@ -58,8 +58,13 @@ public class RideController {
 	@RequestMapping("/park")
 	public ModelAndView getPark() {
 		ModelAndView mv = new ModelAndView("park");
-		Park park = pwas.getPark();
-		mv.addObject("park", park);
+		Park[] parks = pwas.getPark();
+		System.out.println("test");
+	//	String parking = parks.();
+		String parking = parks[0].toString();
+		System.out.println(parks);
+		
+		mv.addObject("park", parking);
 		return mv;
 	}
 

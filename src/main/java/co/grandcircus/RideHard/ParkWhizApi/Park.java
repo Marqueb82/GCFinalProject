@@ -1,9 +1,15 @@
 package co.grandcircus.RideHard.ParkWhizApi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Park {
 
+	
+	@JsonProperty("location_id")
 	private Long locationId;
+	@JsonProperty("start_time")
 	private String startTime;
+	@JsonProperty("end_time")
 	private String endTime;
 
 	public Park() {
@@ -38,6 +44,11 @@ public class Park {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	@Override
+	public String toString() {
+		return "Park [locationId=" + locationId + ", startTime=" + startTime + ", endTime=" + endTime + "]";
 	}
 
 }

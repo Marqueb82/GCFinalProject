@@ -2,17 +2,18 @@ package co.grandcircus.RideHard.ParkWhizApi;
 
 public class ParkWhizResponse {
 
-	private Park park;
+	private Park[] parks;
 
 	public ParkWhizResponse() {
 	}
 
-	public Park getPark() {
-		return park;
+	public Park[] getParks() {
+		
+		return parks;
 	}
 
-	public void setPark(Park park) {
-		this.park = park;
+	public void setParks(Park[] parks) {
+		this.parks = parks;
 	}
 
 }
