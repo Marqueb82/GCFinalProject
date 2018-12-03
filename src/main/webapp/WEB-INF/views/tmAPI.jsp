@@ -14,31 +14,46 @@
 <title>Example of a list display</title>
 </head>
 <body>
-<h1>tmAPI</h1>
-${ pr.size() }
+	<h1>tmAPI</h1>
+	${ Events.size() }
 
+	<form
+		action="/ticketmasterAPI"
+		method="post"
+	>
+		<p class="message">${ message }</p>
+		<p>
+			Search for an Event:
+			<input
+				name="Search"
+				value="Justin Timberlake"
+				class="input"
+			/>
+			<button>SUBMIT.</button>
+		</p>
+	</form>
 
-<table class="table">
+	<table class="table">
 		<thead>
 			<tr>
-				<th>Item Number</th>
 				<th>Item Name</th>
+				<th>Item Venue</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach
 				var="item"
-				items="${pr}"
+				items="${Events}"
 			>
 				<tr>
-					<td>${item}</td>
-					<td>item's name could go here ${ item.name }</td>
+					<td>${item.name}</td>
+					<td>${ item._embedded.venues[0].name }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-<%-- 	<c:forEach var="event" items="${ pr }">
+	<%-- 	<c:forEach var="event" items="${ pr }">
 		<div>
 			<p>${ event }</p>
 			<p><img src="${ event.image }" /></p>
@@ -46,6 +61,6 @@ ${ pr.size() }
 	</c:forEach> --%>
 
 
-<%-- ${ pagedresponse } response of entire object--%>
+	<%-- ${ pagedresponse } response of entire object--%>
 </body>
 </html>

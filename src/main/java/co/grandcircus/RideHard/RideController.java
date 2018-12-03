@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ticketmaster.api.discovery.operation.SearchEventsOperation;
-
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
+import co.grandcircus.RideHard.TicketMaster.Event;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
 import co.grandcircus.RideHard.TicketMaster.Venue;
@@ -44,16 +43,17 @@ public class RideController {
 
 	// potential controller to demonstrate Ticket Master API call
 	@RequestMapping("/ticketmasterAPI")
-	public ModelAndView tmAPI() throws IOException {
+	public ModelAndView tmAPI(@RequestParam(name="Search", required = false) String searchTerm) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
-		SearchEventsOperation seo = new SearchEventsOperation();
-		seo = seo.keyword("steve");
-
-		TicketMasterAPIResponse pr = tmAPI.searchEvents("drake");
 		
-		List<Venue> venues = pr.get_embedded().getEvents().get(0).get_embedded().getVenues();
-
-		mv.addObject("pr", pr.get_embedded().getEvents());
+		if (searchTerm==null) {
+			searchTerm = "Justin Timberlake";
+		}
+		TicketMasterAPIResponse pr = tmAPI.searchEvents(searchTerm);
+		
+		List<Event> events = pr.get_embedded().getEvents();
+		Venue venue = pr.get_embedded().getEvents().get(0).get_embedded().getVenues().get(0);
+		mv.addObject("Events", events);
 
 		return mv;
 	}
