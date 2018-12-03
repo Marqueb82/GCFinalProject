@@ -2,6 +2,7 @@ package co.grandcircus.RideHard;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,11 +61,12 @@ public class RideController {
 		ModelAndView mv = new ModelAndView("park");
 		Park[] parks = pwas.getPark();
 		System.out.println("test");
-	//	String parking = parks.();
+		// String parking = parks.();
 		String parking = parks[0].toString();
+		System.out.println(parks[0].getPurchaseOption());
 		System.out.println(parks);
-		
-		mv.addObject("park", parking);
+
+		mv.addObject("park", Arrays.toString(parks));
 		return mv;
 	}
 
