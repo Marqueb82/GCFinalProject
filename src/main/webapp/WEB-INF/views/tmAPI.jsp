@@ -14,9 +14,17 @@
 <title>Example of a list display</title>
 </head>
 <body>
+<h1>tmAPI</h1>
+${ pr }
+
+<%-- 	<c:forEach var="event" items="${ pr }">
+		<div>
+			<p>${ event }</p>
+			<p><img src="${ event.image }" /></p>
+		</div>
+	</c:forEach> --%>
 
 
-
-${ pagedresponse }
+<%-- ${ pagedresponse } response of entire object--%>
 </body>
 </html>

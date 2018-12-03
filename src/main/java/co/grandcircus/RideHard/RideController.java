@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ticketmaster.api.discovery.operation.SearchEventsOperation;
 import com.ticketmaster.api.discovery.response.PagedResponse;
+import com.ticketmaster.discovery.model.Event;
 import com.ticketmaster.discovery.model.Events;
 
 import co.grandcircus.RideHard.ParkWhizApi.Park;
@@ -47,12 +48,13 @@ public class RideController {
 	public ModelAndView tmAPI() throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		SearchEventsOperation seo = new SearchEventsOperation();
-		seo.keyword("justin timberlake");
-		System.out.println("check");
+		seo = seo.keyword("steve");
 		PagedResponse<Events> pr = tmAPI.searchEvents(seo);
-		System.out.println("checktwo");
-		String test = pr.getJsonPayload();
-		mv.addObject("pagedresponse", test);
+		List<Event> tests = pr.getContent().getEvents();
+
+//		String test = pr.getJsonPayload();
+
+		mv.addObject("pr", tests);
 		return mv;
 	}
 
