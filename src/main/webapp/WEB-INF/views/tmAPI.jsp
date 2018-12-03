@@ -15,7 +15,28 @@
 </head>
 <body>
 <h1>tmAPI</h1>
-${ pr }
+${ pr.size() }
+
+
+<table class="table">
+		<thead>
+			<tr>
+				<th>Item Number</th>
+				<th>Item Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach
+				var="item"
+				items="${pr}"
+			>
+				<tr>
+					<td>${item}</td>
+					<td>item's name could go here ${ item.name }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
 <%-- 	<c:forEach var="event" items="${ pr }">
 		<div>

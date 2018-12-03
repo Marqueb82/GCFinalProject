@@ -1,33 +1,31 @@
 package co.grandcircus.RideHard.TicketMaster;
 
-import java.util.Arrays;
-
-import com.ticketmaster.discovery.model.Events;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class TicketMasterAPIResponse {
 	
+	@JsonProperty("_embedded")
 	private Embedded _embedded;
-	
-	private Events[] events; 
-	
+		
 	public TicketMasterAPIResponse() {	
 	}
 
-	public Events[] getEvents() {
-		return events;
+	public TicketMasterAPIResponse(Embedded _embedded) {
+		super();
+		this._embedded = _embedded;
 	}
 
-	public void setEvents(Events[] events) {
-		this.events = events;
+	public Embedded get_embedded() {
+		return _embedded;
+	}
+
+	public void set_embedded(Embedded _embedded) {
+		this._embedded = _embedded;
 	}
 
 	@Override
 	public String toString() {
-		return "TicketMasterAPIResponse [events=" + Arrays.toString(events) + "]";
+		return "TicketMasterAPIResponse [_embedded=" + _embedded + "]";
 	}
-	
-	
-	
-	
 
 }

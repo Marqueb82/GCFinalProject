@@ -19,7 +19,9 @@ import com.ticketmaster.discovery.model.Events;
 
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
+import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
+import co.grandcircus.RideHard.TicketMaster.Venue;
 import co.grandcircus.RideHard.entity.EnumsAreFun;
 
 @Controller
@@ -48,12 +50,14 @@ public class RideController {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		SearchEventsOperation seo = new SearchEventsOperation();
 		seo = seo.keyword("steve");
-		PagedResponse<Events> pr = tmAPI.searchEvents(seo);
-		List<Event> tests = pr.getContent().getEvents();
+		TicketMasterAPIResponse pr = tmAPI.searchEvents("drake");
+		
+		List<Venue> venues = pr.get_embedded().getEvents().get(0).get_embedded().getVenues();
+	//	List<Event> tests = pr.getContent().getEvents();
 				
 //		String test = pr.getJsonPayload();
 	
-		mv.addObject("pr", tests);
+		mv.addObject("pr", pr.get_embedded().getEvents());
 		return mv;
 	}
 

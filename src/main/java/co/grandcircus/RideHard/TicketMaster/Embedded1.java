@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Embedded1 {
 	
-	private List<Venue>venues;
+	private List<Venue> venues;
 	
 	public Embedded1() {}
 

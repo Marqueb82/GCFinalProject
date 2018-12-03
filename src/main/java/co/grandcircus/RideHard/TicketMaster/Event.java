@@ -1,9 +1,12 @@
 package co.grandcircus.RideHard.TicketMaster;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Event {
 	
 	private String id; 
 	private String name; 
+	@JsonProperty("_embedded")
 	private Embedded1 _embedded;
 	public String getId() {
 		return id;
