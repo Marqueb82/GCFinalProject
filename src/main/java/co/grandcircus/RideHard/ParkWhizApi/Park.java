@@ -9,47 +9,47 @@ public class Park {
 	@JsonProperty("location_id")
 	private Long locationId;
 	@JsonProperty("start_time")
-	private String startTime;
+	private String starttime;
 	@JsonProperty("end_time")
-	private String endTime;
+	private String endtime;
 	@JsonProperty("min_start")
-	private String minStart;
+	private String minstart;
 	@JsonProperty("max_end")
-	private String maxEnd;
+	private String maxend;
 	@JsonProperty("purchase_options")
-	private List<PurchaseOptions> purchaseOption;
+	private List<PurchaseOptions> purchaseoption;
 	@JsonProperty("distance")
 	private Distance distance;
 
 	public Park() {
 	}
 
-	public Park(Long locationId, String startTime, String endTime, String minStart, String maxEnd,
+	public Park(Long locationId, String starttime, String endtime, String minstart, String maxend,
 			List<PurchaseOptions> purchaseOption, Distance distance) {
 		super();
 		this.locationId = locationId;
-		this.startTime = startTime;
-		this.endTime = endTime;
-		this.minStart = minStart;
-		this.maxEnd = maxEnd;
-		this.purchaseOption = purchaseOption;
+		this.starttime = starttime;
+		this.endtime = endtime;
+		this.minstart = minstart;
+		this.maxend = maxend;
+		this.purchaseoption = purchaseOption;
 		this.distance = distance;
 	}
 
 	public String getMinStart() {
-		return minStart;
+		return minstart;
 	}
 
 	public void setMinStart(String minStart) {
-		this.minStart = minStart;
+		this.minstart = minStart;
 	}
 
 	public String getMaxEnd() {
-		return maxEnd;
+		return maxend;
 	}
 
 	public void setMaxEnd(String maxEnd) {
-		this.maxEnd = maxEnd;
+		this.maxend = maxEnd;
 	}
 
 	public Distance getDistance() {
@@ -61,11 +61,11 @@ public class Park {
 	}
 
 	public List<PurchaseOptions> getPurchaseOption() {
-		return purchaseOption;
+		return purchaseoption;
 	}
 
 	public void setPurchaseOption(List<PurchaseOptions> purchaseOption) {
-		this.purchaseOption = purchaseOption;
+		this.purchaseoption = purchaseOption;
 	}
 
 	public Long getLocationId() {
@@ -77,25 +77,25 @@ public class Park {
 	}
 
 	public String getStartTime() {
-		return startTime;
+		return starttime;
 	}
 
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
+	public void setStartTime(String starttime) {
+		this.starttime = starttime;
 	}
 
 	public String getEndTime() {
-		return endTime;
+		return endtime;
 	}
 
 	public void setEndTime(String endTime) {
-		this.endTime = endTime;
+		this.endtime = endTime;
 	}
 
 	@Override
 	public String toString() {
-		return "Park [locationId=" + locationId + ", startTime=" + startTime + ", endTime=" + endTime + ", minStart="
-				+ minStart + ", maxEnd=" + maxEnd + ", purchaseOption=" + purchaseOption + ", distance=" + distance
+		return "Park [locationId=" + locationId + ", startTime=" + starttime + ", endTime=" + endtime + ", minStart="
+				+ minstart + ", maxEnd=" + maxend + ", purchaseOption=" + purchaseoption + ", distance=" + distance
 				+ "]";
 	}
 

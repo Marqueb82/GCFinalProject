@@ -1,20 +1,23 @@
 package co.grandcircus.RideHard.ParkWhizApi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Price {
 
-	private Double USD;
+	@JsonProperty("USD")
+	private Double usd;
 
-	public Double getUSD() {
-		return USD;
+	public Double getUsd() {
+		return usd;
 	}
 
-	public void setUSD(Double USD) {
-		this.USD = USD;
+	public void setUsd(Double usd) {
+		this.usd = usd;
 	}
 
 	@Override
 	public String toString() {
-		return "Price [USD=" + USD + "]";
+		return "Price [usd=" + usd + "]";
 	}
 
 }
