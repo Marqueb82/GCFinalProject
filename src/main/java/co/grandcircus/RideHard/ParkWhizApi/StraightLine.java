@@ -1,8 +1,12 @@
 package co.grandcircus.RideHard.ParkWhizApi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class StraightLine {
 
+	@JsonProperty("meters")
 	private Integer meters;
+	@JsonProperty("feet")
 	private Integer feet;
 
 	public Integer getMeters() {
