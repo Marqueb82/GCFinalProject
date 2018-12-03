@@ -46,7 +46,7 @@ public class RideController {
 	public ModelAndView tmAPI() throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		SearchEventsOperation seo = new SearchEventsOperation();
-		seo.keyword("justin timberlake");
+		seo.keyword("drake");
 		System.out.println("check");
 		PagedResponse<Events> pr = tmAPI.searchEvents(seo);
 		System.out.println("checktwo");
