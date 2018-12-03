@@ -2,6 +2,7 @@ package co.grandcircus.RideHard;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,12 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ticketmaster.api.discovery.operation.SearchEventsOperation;
-import com.ticketmaster.api.discovery.response.PagedResponse;
-import com.ticketmaster.discovery.model.Events;
 
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
+import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
+import co.grandcircus.RideHard.TicketMaster.Venue;
 import co.grandcircus.RideHard.entity.EnumsAreFun;
 
 @Controller
@@ -46,12 +47,14 @@ public class RideController {
 	public ModelAndView tmAPI() throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		SearchEventsOperation seo = new SearchEventsOperation();
-		seo.keyword("drake");
-		System.out.println("check");
-		PagedResponse<Events> pr = tmAPI.searchEvents(seo);
-		System.out.println("checktwo");
-		String test = pr.getJsonPayload();
-		mv.addObject("pagedresponse", test);
+		seo = seo.keyword("steve");
+
+		TicketMasterAPIResponse pr = tmAPI.searchEvents("drake");
+		
+		List<Venue> venues = pr.get_embedded().getEvents().get(0).get_embedded().getVenues();
+
+		mv.addObject("pr", pr.get_embedded().getEvents());
+
 		return mv;
 	}
 
@@ -60,11 +63,12 @@ public class RideController {
 		ModelAndView mv = new ModelAndView("park");
 		Park[] parks = pwas.getPark();
 		System.out.println("test");
-	//	String parking = parks.();
+		// String parking = parks.();
 		String parking = parks[0].toString();
+		System.out.println(parks[0].getPurchaseOption());
 		System.out.println(parks);
-		
-		mv.addObject("park", parking);
+
+		mv.addObject("park", Arrays.toString(parks));
 		return mv;
 	}
 
