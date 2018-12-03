@@ -2,6 +2,7 @@ package co.grandcircus.RideHard;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,14 +51,13 @@ public class RideController {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		SearchEventsOperation seo = new SearchEventsOperation();
 		seo = seo.keyword("steve");
+
 		TicketMasterAPIResponse pr = tmAPI.searchEvents("drake");
 		
 		List<Venue> venues = pr.get_embedded().getEvents().get(0).get_embedded().getVenues();
-	//	List<Event> tests = pr.getContent().getEvents();
-				
-//		String test = pr.getJsonPayload();
-	
+
 		mv.addObject("pr", pr.get_embedded().getEvents());
+
 		return mv;
 	}
 
@@ -68,9 +68,10 @@ public class RideController {
 		System.out.println("test");
 		// String parking = parks.();
 		String parking = parks[0].toString();
+		System.out.println(parks[0].getPurchaseOption());
 		System.out.println(parks);
 
-		mv.addObject("park", parking);
+		mv.addObject("park", Arrays.toString(parks));
 		return mv;
 	}
 
