@@ -2,7 +2,7 @@ package co.grandcircus.RideHard.ParkWhizApi;
 
 public class PurchaseOptions {
 
-	private String id;
+	private String id = "";
 	private Price price;
 
 	public String getId() {

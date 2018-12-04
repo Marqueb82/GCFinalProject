@@ -67,8 +67,8 @@ public class RideController {
 		String parking = parks[0].toString();
 		System.out.println(parks[0].getPurchaseOption());
 		System.out.println(parks);
-
 		mv.addObject("park", Arrays.toString(parks));
+		mv.addObject("Parks", parks);
 		return mv;
 	}
 

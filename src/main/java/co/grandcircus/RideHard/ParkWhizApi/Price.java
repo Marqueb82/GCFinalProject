@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Price {
 
 	@JsonProperty("USD")
-	private Double usd;
+	private Double usd = 0.0;
 
 	public Double getUsd() {
 		return usd;

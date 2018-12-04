@@ -11,9 +11,9 @@
 	<h2>${ park }</h2>
 	
 	<table>
-	<c:forEach var = "park" items = "${parks }" >
+	<c:forEach var = "park" items = "${ Parks }" >
 		<tr>
-        	<td><h2>park.purchaseOption</h2></td>
+        	<td>${park.locationId}</td>
         </tr>
       </c:forEach>
 	</table>

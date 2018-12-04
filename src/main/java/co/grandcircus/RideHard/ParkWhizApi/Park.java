@@ -17,6 +17,7 @@ public class Park {
 	@JsonProperty("max_end")
 	private String maxend;
 	@JsonProperty("purchase_options")
+	//Why is the list plural and the class singular? -ED
 	private List<PurchaseOptions> purchaseoption;
 	@JsonProperty("distance")
 	private Distance distance;
