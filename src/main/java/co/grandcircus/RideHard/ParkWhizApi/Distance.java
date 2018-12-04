@@ -1,7 +1,10 @@
 package co.grandcircus.RideHard.ParkWhizApi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Distance {
 
+	@JsonProperty("straight_line")
 	private StraightLine straightline;
 
 	public StraightLine getStraightline() {

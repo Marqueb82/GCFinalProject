@@ -17,7 +17,11 @@ public class Park {
 	@JsonProperty("max_end")
 	private String maxend;
 	@JsonProperty("purchase_options")
-	//Why is the list plural and the class singular? -ED
+	// Why is the list plural and the class singular? -ED
+	// the parkwhiz API begins in an array from the beginning,
+	// via David he said it would be best to put this in a list because it would be
+	// easier to manage
+	// ED stay out--😡😡😡😡😡
 	private List<PurchaseOptions> purchaseoption;
 	@JsonProperty("distance")
 	private Distance distance;
