@@ -14,6 +14,8 @@
 	<c:forEach var = "park" items = "${ Parks }" >
 		<tr>
         	<td>${park.locationId}</td>
+        	<td>${park.purchaseOption}</td>
+        	<td>${park.distance}</td>
         </tr>
       </c:forEach>
 	</table>
