@@ -1,10 +1,15 @@
 package co.grandcircus.RideHard.TicketMaster;
 
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ticketmaster.discovery.model.Date;
 
 public class Event {
 	
+	@Id
+	@OneToOne
 	private String id; 
 	private String name; 
 	@JsonProperty("_embedded")
