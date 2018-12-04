@@ -43,14 +43,14 @@ public class RideController {
 
 	// potential controller to demonstrate Ticket Master API call
 	@RequestMapping("/ticketmasterAPI")
-	public ModelAndView tmAPI(@RequestParam(name="Search", required = false) String searchTerm) throws IOException {
+	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
-		
-		if (searchTerm==null) {
+
+		if (searchTerm == null) {
 			searchTerm = "Justin Timberlake";
 		}
 		TicketMasterAPIResponse pr = tmAPI.searchEvents(searchTerm);
-		
+
 		List<Event> events = pr.get_embedded().getEvents();
 		Venue venue = pr.get_embedded().getEvents().get(0).get_embedded().getVenues().get(0);
 		mv.addObject("Events", events);
@@ -61,14 +61,21 @@ public class RideController {
 	@RequestMapping("/park")
 	public ModelAndView getPark() {
 		ModelAndView mv = new ModelAndView("park");
-		Park[] parks = pwas.getPark();
+		Park[] response = pwas.getPark();
 		System.out.println("test");
 		// String parking = parks.();
-		String parking = parks[0].toString();
-		System.out.println(parks[0].getPurchaseOption());
-		System.out.println(parks);
-		mv.addObject("park", Arrays.toString(parks));
-		mv.addObject("Parks", parks);
+		String parking = response[0].toString();
+		System.out.println(response[0].getPurchaseoption());
+		System.out.println(response);
+
+		ArrayList<Park> currentParks = new ArrayList<>();
+		for (Park park : response)
+			if (!park.getPurchaseoption().isEmpty()) {
+				currentParks.add(park);
+			}
+		System.out.println(currentParks);
+		mv.addObject("park", Arrays.toString(response));
+		mv.addObject("Parks", currentParks);
 		return mv;
 	}
 

@@ -8,14 +8,17 @@
 <title>Park</title>
 </head>
 <body>
-	<h2>${ park }</h2>
-	
+
 	<table>
-	<c:forEach var = "park" items = "${ Parks }" >
+	<c:forEach var = "park" items = "${Parks }" >
 		<tr>
         	<td>${park.locationId}</td>
-        	<td>${park.purchaseOption}</td>
-        	<td>${park.distance}</td>
+        	<td>${park.purchaseoption}</td>
+        	<td>${park.distance.straightline.getDescription()}</td>
+        	<td>${park.embedded.location.address1 }</td>
+        	<td>${park.embedded.location.name }</td>
+        	<td>${park.embedded.location.city }</td>
+        	
         </tr>
       </c:forEach>
 	</table>

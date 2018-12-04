@@ -23,7 +23,7 @@ public class PurchaseOptions {
 
 	@Override
 	public String toString() {
-		return "PurchaseOptions [id=" + id + ", price=" + price + "]";
+		return "Total = " + price;
 	}
 
 }
