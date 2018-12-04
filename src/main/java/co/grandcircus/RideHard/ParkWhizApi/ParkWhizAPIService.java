@@ -14,12 +14,12 @@ public class ParkWhizAPIService {
 
 	RestTemplate restTemplate = new RestTemplate();
 
-	public Park[] getPark() {
+	public Park[] getPark(String latitude, String longitude, String date, String time) {
 
 		// Map<String, String> request = new HashMap<>();
 		// request.put("q=",
 
-		String url = "http://api.parkwhiz.com/v4/quotes/?q=coordinates:42.3368,-83.0500&start_time=2018-12-08T07:00&end_time=2018-12-08T13:00&api_key="
+		String url = "http://api.parkwhiz.com/v4/quotes/?q=coordinates:" + latitude + "," + longitude + "&start_time=" + date + "T" + time + "&end_time=" + date + "T23:59&api_key="
 				+ apiKey;
 		System.out.println(url);
 		Park[] response = restTemplate.getForObject(url, Park[].class);

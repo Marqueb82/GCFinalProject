@@ -55,6 +55,9 @@
 					<td>${ item.id }</td>
 					<td>${ item.dates.start.localDate }</td>
 					<td>${ item.dates.start.localTime }</td>
+					<td>					<a href="/park/${ item.id }">
+						<button class="botton1">Select Event</button>
+					</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
