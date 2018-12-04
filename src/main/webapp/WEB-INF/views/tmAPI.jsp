@@ -38,6 +38,9 @@
 			<tr>
 				<th>Item Name</th>
 				<th>Item Venue</th>
+				<th>Item ID</th>
+				<th>Date</th>
+				<th>time</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -45,9 +48,13 @@
 				var="item"
 				items="${Events}"
 			>
+			
 				<tr>
 					<td>${item.name}</td>
 					<td>${ item._embedded.venues[0].name }</td>
+					<td>${ item.id }</td>
+					<td>${ item.dates.start.localDate }</td>
+					<td>${ item.dates.start.localTime }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

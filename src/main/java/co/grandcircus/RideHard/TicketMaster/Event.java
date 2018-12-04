@@ -1,6 +1,7 @@
 package co.grandcircus.RideHard.TicketMaster;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ticketmaster.discovery.model.Date;
 
 public class Event {
 	
@@ -8,6 +9,8 @@ public class Event {
 	private String name; 
 	@JsonProperty("_embedded")
 	private Embedded1 _embedded;
+	private Date dates;
+	
 	public String getId() {
 		return id;
 	}
@@ -25,6 +28,12 @@ public class Event {
 	}
 	public void set_embedded(Embedded1 _embedded) {
 		this._embedded = _embedded;
+	}
+	public Date getDates() {
+		return dates;
+	}
+	public void setDates(Date date) {
+		this.dates = date;
 	}
 	public Event() {}
 	public Event(String id, String name, Embedded1 _embedded) {
