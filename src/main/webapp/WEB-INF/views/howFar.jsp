@@ -9,14 +9,19 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet">
-<title>GetTo: Event Details</title>
+<title>GoTo: Event Details</title>
 </head>
-<h3> GetTo </h3>
+<h3> GoTo </h3>
 
-<p>How Far: <input type="number" name="distance" /> </p>
-<p></p>
-<p></p>
-<p>Car Size: <input type="hidden" name="carSize" value="15" /><p><button type="submit">Next</button></p>
+<form action="/howFar">
+  How Far:<br><input type="number" min=0 step=5 name="howFar"><br>
+  Vehicle Size:<br><input type="number" min=2 max=8 name="vSize"><br>
+  <br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+
 
 <body>
 

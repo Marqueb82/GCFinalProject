@@ -89,5 +89,13 @@ public class RideController {
 		mv.addObject("Parks", currentParks);
 		return mv;
 	}
+	@RequestMapping("/howFar")
+	public ModelAndView distance() {
+		ModelAndView mv3 = new ModelAndView("howFar");
+		return mv3;
+	}
+
+	
+
 
 }
