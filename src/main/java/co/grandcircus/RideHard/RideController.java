@@ -56,11 +56,12 @@ public class RideController {
 		return mv;
 	}
 
-	@RequestMapping("/park/{eventId}")
-	public ModelAndView getPark(@PathVariable("eventId") String eventId, HttpSession session,
+	@RequestMapping("/park")
+	public ModelAndView getPark(HttpSession session,
 			RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView("park");
 		List<Event> events = (List<Event>) session.getAttribute("Events");
+		String eventId = (String) session.getAttribute("EventId");
 		Event event = new Event();
 		for (int i = 0; i < events.size(); i++) {
 			if (events.get(i).getId().equals(eventId)) {
