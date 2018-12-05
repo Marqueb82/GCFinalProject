@@ -13,13 +13,25 @@
 <head>
 <meta charset="UTF-8">
 <title>This is an index.</title>
+<style>
+div {
+    padding: 20px;
+    
+   
+}
+</style>
 </head>
-<body>
-	<h2>Come use our service. It's really rad.</h2>
-	<h4>This is a JSP that has had the tag we'll need to make JSPs do JSP stuff pasted at the top already. JSP files tell the browser what HTML to display.</h4>
+<body style="background-color:black;">
 	
-	<h5>That string we sent from the controller will follow this sentence. ${ JSP_data } And one of us just learned that you can't include spaces in EL variables!</h5>
-	
+	<div class="responsive" align="center">
+  		<div class="gallery">
+  			<h1 style="text-align:center;"><font color="white">GET THERE!!!</font></h1>
+    		<a href="/ticketmasterAPI">
+      		<img src="/images/fun2.gif" width="550" height="550">
+    		</a>
+    	<div class="desc"><font color="white">Click to Enter</font></div>
+  	</div>
+	</div>
 	
 </body>
 </html>

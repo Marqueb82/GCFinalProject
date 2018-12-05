@@ -13,7 +13,7 @@
 	<c:forEach var = "park" items = "${Parks }" >
 		<tr>
         	<td>${park.locationId}</td>
-        	<td>${park.purchaseoption}</td>
+        	<td>${park.getCost()}</td>
         	<td>${park.distance.straightline.getDescription()}</td>
         	<td>${park.embedded.location.address1 }</td>
         	<td>${park.embedded.location.name }</td>

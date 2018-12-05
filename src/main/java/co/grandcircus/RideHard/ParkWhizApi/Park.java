@@ -100,6 +100,10 @@ public class Park {
 		this.purchaseoption = purchaseoption;
 	}
 
+	public String getCost() {
+		return "Purchasing " + purchaseoption.get(0).getPrice();
+	}
+
 	public Distance getDistance() {
 		return distance;
 	}
@@ -134,10 +138,10 @@ public class Park {
 
 	@Override
 	public String toString() {
-		return "Park [locationId=" + locationId + ", starttime=" + starttime + ", endtime=" + endtime + ", minstart="
+		return "Park locationId=" + locationId + ", starttime=" + starttime + ", endtime=" + endtime + ", minstart="
 				+ minstart + ", maxend=" + maxend + ", purchaseoption=" + purchaseoption + ", distance=" + distance
 				+ ", priceSegments=" + priceSegments + ", spaceavailabilty=" + spaceavailabilty + ", embedded="
-				+ embedded + "]";
+				+ embedded;
 	}
 
 }

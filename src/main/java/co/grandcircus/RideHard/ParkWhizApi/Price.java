@@ -17,7 +17,7 @@ public class Price {
 
 	@Override
 	public String toString() {
-		return "Price =" + usd;
+		return "Price = $" + usd;
 	}
 
 }

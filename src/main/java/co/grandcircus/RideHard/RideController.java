@@ -2,7 +2,6 @@ package co.grandcircus.RideHard;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +46,8 @@ public class RideController {
 
 	// potential controller to demonstrate Ticket Master API call
 	@RequestMapping("/ticketmasterAPI")
-	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm, HttpSession session, RedirectAttributes redir) throws IOException {
+	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm, HttpSession session,
+			RedirectAttributes redir) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 
 		if (searchTerm == null) {
@@ -63,17 +63,20 @@ public class RideController {
 	}
 
 	@RequestMapping("/park/{eventId}")
-	public ModelAndView getPark(@PathVariable("eventId") String eventId, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView getPark(@PathVariable("eventId") String eventId, HttpSession session,
+			RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView("park");
 		List<Event> events = (List<Event>) session.getAttribute("Events");
 		Event event = new Event();
-		for (int i=0; i < events.size(); i++) {
+		for (int i = 0; i < events.size(); i++) {
 			if (events.get(i).getId().equals(eventId)) {
 				event = events.get(i);
 			}
 		}
-		
-		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(), event.get_embedded().getVenues().get(0).getLocation().getLongitude(), event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime());
+
+		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
+				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
+				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime());
 //		System.out.println("test");
 //		// String parking = parks.();
 //	//	String parking = response[0].toString();
@@ -86,7 +89,6 @@ public class RideController {
 				currentParks.add(park);
 			}
 		System.out.println(currentParks);
-		mv.addObject("park", Arrays.toString(response));
 		mv.addObject("Parks", currentParks);
 		return mv;
 	}
