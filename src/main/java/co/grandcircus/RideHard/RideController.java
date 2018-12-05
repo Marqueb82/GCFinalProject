@@ -2,9 +2,7 @@ package co.grandcircus.RideHard;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -90,76 +88,6 @@ public class RideController {
 		System.out.println(currentParks);
 		mv.addObject("Parks", currentParks);
 		return mv;
-	}
-
-	// ditto CoOrd API
-	@RequestMapping("/CoOrdAPI")
-	public ModelAndView coOrdAPI(@RequestParam("somedata") String probably) {
-		ModelAndView mv = new ModelAndView("coOrdAPI");
-
-		return mv;
-	}
-
-	// Same, Uber
-	@RequestMapping("/uberAPI")
-	public ModelAndView ubAPI(@RequestParam("somedata") String probably) {
-		ModelAndView mv = new ModelAndView("ubAPI");
-
-		return mv;
-	}
-
-	// etc.
-	@RequestMapping("/lyftAPI")
-	public ModelAndView lyAPI(@RequestParam("somedata") String probably) {
-		ModelAndView mv = new ModelAndView("lyAPI");
-
-		return mv;
-	}
-
-	@RequestMapping("/spotHeroAPI")
-	public ModelAndView shAPI(@RequestParam("somedata") String probably) {
-		ModelAndView mv = new ModelAndView("shAPI");
-
-		return mv;
-	}
-
-	// I forget if we landed on actually using this or how, but seems good.
-	@RequestMapping("/mapsAPI")
-	public ModelAndView gmAPI(@RequestParam("somedata") String probably) {
-		ModelAndView mv = new ModelAndView("gmAPI");
-
-		return mv;
-	}
-
-	// Demo of list display in JSP
-	@RequestMapping("/list")
-	public ModelAndView lists() {
-		ModelAndView mv = new ModelAndView("listexample");
-		List<Integer> numbersList = new ArrayList<Integer>();
-		// list items are displayed in the order they were place in the list.
-		numbersList.add(4);
-		numbersList.add(5);
-		numbersList.add(8);
-		numbersList.add(34);
-		numbersList.add(9);
-		numbersList.add(2);
-		mv.addObject("numbers", numbersList);
-
-		Map<String, Integer> hm = new HashMap<>();
-		// Don't know what determines what order the HashMap displays in the JSP. Seems
-		// to do whatever it feels like, unless the key is in numerical order? Will
-		// probably lost several hours sleep on this this weekend, in the meantime,
-		// would could use HashMaps because HashMaps are neat.
-		hm.put("What", 100);
-		hm.put("order", 99);
-		hm.put("are", 98);
-		hm.put("these", 999);
-		hm.put("in", 97);
-		mv.addObject("Dec6th", hm);
-
-		return mv;
-
-		// This is what it's like being in a group with me. Hope you're having fun!
 	}
 
 }
