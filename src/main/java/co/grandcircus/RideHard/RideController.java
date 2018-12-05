@@ -90,4 +90,10 @@ public class RideController {
 		return mv;
 	}
 
+	@RequestMapping("/parkingspot")
+	public ModelAndView addPark() {
+		ModelAndView mv = new ModelAndView("/parkingspot");
+		return mv;
+	}
+	
 }
