@@ -22,7 +22,6 @@ import co.grandcircus.RideHard.TicketMaster.Event;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
 import co.grandcircus.RideHard.TicketMaster.Venue;
-import co.grandcircus.RideHard.entity.EnumsAreFun;
 
 @Controller
 public class RideController {
@@ -157,20 +156,6 @@ public class RideController {
 		hm.put("these", 999);
 		hm.put("in", 97);
 		mv.addObject("Dec6th", hm);
-
-		// In fact, let's make a HashMap of Enums! Obviously, the most superior object
-		// in all of OOP.
-		Map<Enum, Character> hm2 = new HashMap<>();
-		hm2.put(EnumsAreFun.WHAT, 'a');
-		hm2.put(EnumsAreFun.YOU, 'c');
-		hm2.put(EnumsAreFun.THOUGHT, 'e');
-		hm2.put(EnumsAreFun.I, 'g');
-		hm2.put(EnumsAreFun.WAS, 'b');
-		hm2.put(EnumsAreFun.JOKING, 'c');
-		hm2.put(EnumsAreFun.ABOUT, 'e');
-		hm2.put(EnumsAreFun.THE, 'f');
-		hm2.put(EnumsAreFun.ENUMS, 'h');
-		mv.addObject("SecondOne", hm2);
 
 		return mv;
 
