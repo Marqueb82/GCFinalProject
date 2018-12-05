@@ -11,14 +11,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Example of a list display</title>
+<title>Index Page</title>
 </head>
 <body>
-	<h1>tmAPI</h1>
+	<h1 align="center">Get There</h1>
 	${ Events.size() }
 
 	<form
-		action="/ticketmasterAPI"
+		action="/"
 		method="post"
 	>
 		<p class="message">${ message }</p>
@@ -26,7 +26,20 @@
 			Search for an Event:
 			<input
 				name="Search"
-				value="Justin Timberlake"
+				class="input"
+			/>
+			<button>SUBMIT.</button>
+		</p>
+	</form>	<form
+		action="/"
+		method="post"
+	>
+		<p class="message">${ message }</p>
+		<p>
+			Search for an Event:
+			<input
+				name="City"
+
 				class="input"
 			/>
 			<button>SUBMIT.</button>
