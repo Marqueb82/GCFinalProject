@@ -30,27 +30,24 @@ public class RideController {
 	@Autowired
 	private ParkWhizAPIService pwas;
 
-	@RequestMapping("/")
-	public ModelAndView home() {
-		ModelAndView mv = new ModelAndView("index");
-		String aString = "I'm a String, about to be sent to a JSP!";
-		mv.addObject("JSP_data", aString);
-		return mv;
-	}
-
-	// None of these controller methods really matter at this point from here on.
-	// These are to serve as placeholders only to prove the API calls are working.
-
 	// potential controller to demonstrate Ticket Master API call
-	@RequestMapping("/ticketmasterAPI")
-	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm, HttpSession session,
+	@RequestMapping("/")
+	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
+			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
 			RedirectAttributes redir) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
-
-		if (searchTerm == null) {
-			searchTerm = "Justin Timberlake";
+		TicketMasterAPIResponse pr;
+		if (searchTerm == null && searchCity == null) {
+			searchTerm = " ";
+			searchCity = " ";
+			pr = tmAPI.searchEvents(searchTerm, searchCity);
+		} else if (searchTerm == null) {
+			pr = tmAPI.citySearchEvents(searchCity);
+		} else if (searchCity == null) {
+			pr = tmAPI.searchEvents(searchTerm);
+		} else {
+			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		}
-		TicketMasterAPIResponse pr = tmAPI.searchEvents(searchTerm);
 
 		List<Event> events = pr.get_embedded().getEvents();
 		Venue venue = pr.get_embedded().getEvents().get(0).get_embedded().getVenues().get(0);
@@ -74,11 +71,6 @@ public class RideController {
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
 				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime());
-//		System.out.println("test");
-//		// String parking = parks.();
-//	//	String parking = response[0].toString();
-//		System.out.println(response[0].getPurchaseoption());
-//		System.out.println(response);
 
 		ArrayList<Park> currentParks = new ArrayList<>();
 		for (Park park : response)
@@ -98,4 +90,10 @@ public class RideController {
 	
 
 
+	@RequestMapping("/parkingspot")
+	public ModelAndView addPark() {
+		ModelAndView mv = new ModelAndView("/parkingspot");
+		return mv;
+	}
+	
 }
