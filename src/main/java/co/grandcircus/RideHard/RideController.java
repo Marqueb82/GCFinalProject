@@ -81,14 +81,14 @@ public class RideController {
 		mv.addObject("Parks", currentParks);
 		return mv;
 	}
-	@RequestMapping("/howFar")
-	public ModelAndView distance() {
+	
+	@RequestMapping("/howFar/{eventId}")
+	public ModelAndView distance(@PathVariable("eventId") String eventId, HttpSession session,
+			RedirectAttributes redir) {
 		ModelAndView mv3 = new ModelAndView("howFar");
+		session.setAttribute("EventId", eventId);
 		return mv3;
 	}
-
-	
-
 
 	@RequestMapping("/parkingspot")
 	public ModelAndView addPark() {
