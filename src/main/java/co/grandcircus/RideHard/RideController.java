@@ -71,7 +71,7 @@ public class RideController {
 	@RequestMapping("/park")
 	public ModelAndView getPark(@RequestParam(name = "howFar", required = false) Double howFar,
 			@RequestParam(name = "vSize", required = false) Integer vSize,
-			@RequestParam(name = "DrivingDistance", required = false) Double drivingDistance, @RequestParam(name="ParkPrice", required=false) Double parkPrice, HttpSession session,
+			@RequestParam(name = "DrivingDistance", required = false) Double drivingDistance, HttpSession session,
 			RedirectAttributes redir) {
 		
 		if (howFar != null) {
@@ -106,7 +106,10 @@ public class RideController {
 		Double driveDistance = (Double) session.getAttribute("DriveD"); 
 		Double gasCost = gasCalc(driveDistance);
 		session.setAttribute("GasCost", gasCost);
-		session.setAttribute("ParkPrice", parkPrice);
+		
+		Double totalCost = gasCost + (Double) session.getAttribute("ParkPrice");
+		session.setAttribute("TotalCost", totalCost);
+		
 
 		mv.addObject("event", event);
 		mv.addObject("Parks", currentParks);
@@ -148,6 +151,7 @@ public class RideController {
 	
 	@RequestMapping("/park/choose")
 	private ModelAndView choose( @RequestParam(name="ParkPrice", required=false) Double parkPrice, HttpSession session, RedirectAttributes redir) {
+		session.setAttribute("ParkPrice", parkPrice);
 		
 		return new ModelAndView("redirect:/park");
 	}
