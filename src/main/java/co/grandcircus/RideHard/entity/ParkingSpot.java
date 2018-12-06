@@ -15,16 +15,22 @@ public class ParkingSpot {
 	private String name;
 	private String address;
 	private String city;
+	private Double latitude;
+	private Double longitude;
 
 	public ParkingSpot() {
 	}
 
-	public ParkingSpot(Long id, String purchasingprice, String name, String address, String city) {
+	public ParkingSpot(Long id, String purchasingprice, String name, String address, String city, Double latitude,
+			Double longitude) {
+
 		this.id = id;
 		this.purchasingprice = purchasingprice;
 		this.name = name;
 		this.address = address;
 		this.city = city;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public Long getId() {
@@ -65,6 +71,22 @@ public class ParkingSpot {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 	@Override

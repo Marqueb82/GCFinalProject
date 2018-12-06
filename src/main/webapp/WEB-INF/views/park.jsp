@@ -9,6 +9,11 @@
 </head>
 <body>
 
+	<div>
+		<p>${event.name }</p>
+	</div>
+
+	<div>
 	<table>
 	<c:forEach var = "park" items = "${Parks }" >
 		<tr>
@@ -22,5 +27,19 @@
         </tr>
       </c:forEach>
 	</table>
+	<br>
+	<h2>User found parking locations</h2>
+	<table>
+	<c:forEach var = "userpark" items = "${userparking }" >
+		<tr>
+        	<td>${userpark.purchasingprice}</td>
+        	<td>${userpark.address }</td>
+        	<td>${userpark.name }</td>
+        	<td>${userpark.city }</td>
+        </tr>
+      </c:forEach>
+	</table>
+	 <a href="/parkingspot/${event.id}" class="btn btn-info" role="button">Add my own parking</a>
+	</div>
 </body>
 </html>

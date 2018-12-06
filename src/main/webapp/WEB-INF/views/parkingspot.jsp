@@ -8,9 +8,9 @@
 </head>
 <body>
 
-<h2>Parking</h2>
+<h2>This location will be listed for future events in similar location</h2>
 
-<form action="/action_page.php">
+<form>
   Purchasing Price:<br>
   <input type="text" name="purchasingprice">
   <br>
@@ -23,8 +23,16 @@
   City:<br>
   <input type="text" name="city">
   <br>
+  Latitude:<br>
+  <input type="text" name="latitude">
+  <br>
+  Longitude:<br>
+  <input type="text" name="longitude">
+  <br>
   <input type="submit" value="Submit">
   </form> 
+  
+  <a href="/park/${event.id}" class="btn btn-info" role="button">Back</a>
 
 </body>
 </html>

@@ -13,7 +13,11 @@
 </head>
 <h3> GoTo </h3>
 
-<form action="/howFar">
+	<div>
+		<p>${event.name }</p>
+	</div>
+
+<form action="/park/${event.id }">
   How Far:<br><input type="number" min=0 step=5 name="howFar"><br>
   Vehicle Size:<br><input type="number" min=2 max=8 name="vSize"><br>
   <br>
