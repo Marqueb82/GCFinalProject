@@ -34,6 +34,7 @@ public class RideController {
 	private ParkWhizAPIService pwas;
 
 	// potential controller to demonstrate Ticket Master API call
+	@SuppressWarnings("unused")
 	@RequestMapping("/")
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
 			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
@@ -109,6 +110,7 @@ public class RideController {
 	 * @param session
 	 * @return selected event
 	 */
+	@SuppressWarnings("unchecked")
 	private Event selectedEvent(String eventId, HttpSession session) {
 		List<Event> events = (List<Event>) session.getAttribute("Events");
 		Event event = new Event();

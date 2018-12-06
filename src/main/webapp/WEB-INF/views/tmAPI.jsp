@@ -36,7 +36,7 @@
 	>
 		<p class="message">${ message }</p>
 		<p>
-			Search for an Event:
+			by City:
 			<input
 				name="City"
 
