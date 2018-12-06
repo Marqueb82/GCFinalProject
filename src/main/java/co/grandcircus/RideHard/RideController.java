@@ -20,7 +20,6 @@ import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
 import co.grandcircus.RideHard.TicketMaster.Event;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
-import co.grandcircus.RideHard.TicketMaster.Venue;
 import co.grandcircus.RideHard.entity.ParkingSpot;
 
 @Controller
@@ -33,8 +32,7 @@ public class RideController {
 	@Autowired
 	private ParkWhizAPIService pwas;
 
-	// potential controller to demonstrate Ticket Master API call
-	@SuppressWarnings("unused")
+	//  controller to demonstrate Ticket Master API call
 	@RequestMapping("/")
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
 			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
@@ -54,8 +52,7 @@ public class RideController {
 		}
 
 		List<Event> events = pr.get_embedded().getEvents();
-		Venue venue = pr.get_embedded().getEvents().get(0).get_embedded().getVenues().get(0);
-		mv.addObject("Events", events);
+
 		session.setAttribute("Events", events);
 		return mv;
 	}
@@ -78,7 +75,13 @@ public class RideController {
 			RedirectAttributes redir) {
 		session.setAttribute("howFar", howFar);
 		session.setAttribute("vSize", vSize);
+		
+		if (drivingDistance != null) {
 		session.setAttribute("DriveD", drivingDistance);
+		}
+		
+		System.out.println(drivingDistance);
+		System.out.println(session.getAttribute("DriveD"));
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
@@ -94,10 +97,11 @@ public class RideController {
 			if (!park.getPurchaseoption().isEmpty()) {
 				currentParks.add(park);
 			}
-		System.out.println(currentParks);
+	//	System.out.println(currentParks);
 		
-//		Double gasCost = gasCalc(drivingDistance);
-//		session.setAttribute("GasCost", gasCost);
+		Double driveDistance = (Double) session.getAttribute("DriveD"); 
+		Double gasCost = gasCalc(driveDistance);
+		session.setAttribute("GasCost", gasCost);
 		session.setAttribute("ParkPrice", parkPrice);
 
 		mv.addObject("event", event);
@@ -136,6 +140,12 @@ public class RideController {
 		mv.addObject("Parks", currentParks);
 		mv.addObject("userparking", userparking);
 		return mv;
+	}
+	
+	@RequestMapping("/park/choose")
+	private ModelAndView choose( @RequestParam(name="ParkPrice", required=false) Double parkPrice, HttpSession session, RedirectAttributes redir) {
+		
+		return new ModelAndView("redirect:/park");
 	}
 
 	/**
