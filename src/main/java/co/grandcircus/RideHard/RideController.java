@@ -73,9 +73,13 @@ public class RideController {
 			@RequestParam(name = "vSize", required = false) Integer vSize,
 			@RequestParam(name = "DrivingDistance", required = false) Double drivingDistance, @RequestParam(name="ParkPrice", required=false) Double parkPrice, HttpSession session,
 			RedirectAttributes redir) {
-		session.setAttribute("howFar", howFar);
-		session.setAttribute("vSize", vSize);
 		
+		if (howFar != null) {
+		session.setAttribute("howFar", howFar);
+		}
+		if (vSize != null) {
+		session.setAttribute("vSize", vSize);
+		}
 		if (drivingDistance != null) {
 		session.setAttribute("DriveD", drivingDistance);
 		}
