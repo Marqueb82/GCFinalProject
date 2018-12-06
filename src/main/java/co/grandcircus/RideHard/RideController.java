@@ -18,6 +18,7 @@ import co.grandcircus.RideHard.ParkDao.ParkDao;
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
 import co.grandcircus.RideHard.TicketMaster.Event;
+import co.grandcircus.RideHard.TicketMaster.Location;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
 import co.grandcircus.RideHard.TicketMaster.Venue;
@@ -72,8 +73,11 @@ public class RideController {
 	}
 
 	@RequestMapping("/park/{eventId}")
-	public ModelAndView getPark(@PathVariable("eventId") String eventId, HttpSession session,
+	public ModelAndView getPark(@RequestParam("howFar") double howFar, @RequestParam("vSize") int vSize,
+			@PathVariable("eventId") String eventId, HttpSession session,
 			RedirectAttributes redir) {
+		session.setAttribute("howFar", howFar);
+		session.setAttribute("vSize", vSize);
 		ModelAndView mv = new ModelAndView("park");
 		Event event = selectedEvent(eventId, session);
 		List<ParkingSpot> userparking = pd.findall();
@@ -120,6 +124,19 @@ public class RideController {
 			}
 		}
 		return event;
+	}
+	
+	private List<ParkingSpot> psd(HttpSession session){
+		List<ParkingSpot> psList= new ArrayList<ParkingSpot>();
+		List<ParkingSpot> fullList = pd.findall();
+		double howFar = (double) session.getAttribute("howFar");
+		Event event = (Event) session.getAttribute("Event");
+		for(ParkingSpot park: fullList) {
+			if(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park)<= howFar) {
+				psList.add(park);
+			}
+		}
+		return psList;
 	}
 
 }
