@@ -39,7 +39,7 @@
         </tr>
       </c:forEach>
 	</table>
-	 <a href="/parkingspot/${event.id}" class="btn btn-info" role="button">Add my own parking</a>
+	 <a href="/parkingspot" class="btn btn-info" role="button">Add my own parking</a>
 	</div>
 </body>
 </html>

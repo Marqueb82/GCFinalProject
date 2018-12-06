@@ -10,7 +10,7 @@
 
 <h2>This location will be listed for future events in similar location</h2>
 
-<form>
+<form action="/add/parkingspot">
   Purchasing Price:<br>
   <input type="text" name="purchasingprice">
   <br>
@@ -32,7 +32,7 @@
   <input type="submit" value="Submit">
   </form> 
   
-  <a href="/park/${event.id}" class="btn btn-info" role="button">Back</a>
+  <a href="/park" class="btn btn-info" role="button">Back</a>
 
 </body>
 </html>

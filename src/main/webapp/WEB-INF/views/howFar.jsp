@@ -14,7 +14,7 @@
 	<p>${event.name }</p>
 </div>
 
-<form action="/park/${event.id }" >
+<form action="/park" >
 	How Far:<br>
 	<input type="number" min=0 step=5 name="howFar"><br>
 	Vehicle Size:<br>
