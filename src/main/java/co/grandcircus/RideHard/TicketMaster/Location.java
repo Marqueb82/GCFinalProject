@@ -50,7 +50,7 @@ public class Location {
 		// two locations and the north pole
 		double theCos = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long1 - long2);
 		double arcLength = Math.acos(theCos);
-		return arcLength * 6378099.99805; //distance of radius in meters. The number stands for radius of the earth in meters. 
+		return arcLength * 20903520.0; //distance of radius in meters. The number stands for radius of the earth in meters. 
 	}
 
 }

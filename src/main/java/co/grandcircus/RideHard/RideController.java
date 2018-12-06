@@ -73,10 +73,12 @@ public class RideController {
 
 	@RequestMapping("/park")
 	public ModelAndView getPark(@RequestParam(name = "howFar", required = false) Double howFar,
-			@RequestParam(name = "vSize", required = false) Integer vSize, HttpSession session,
+			@RequestParam(name = "vSize", required = false) Integer vSize,
+			@RequestParam(name = "DrivingDistance", required = false) Double drivingDistance, @RequestParam(name="ParkPrice", required=false) Double parkPrice, HttpSession session,
 			RedirectAttributes redir) {
 		session.setAttribute("howFar", howFar);
 		session.setAttribute("vSize", vSize);
+		session.setAttribute("DriveD", drivingDistance);
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
@@ -93,6 +95,11 @@ public class RideController {
 				currentParks.add(park);
 			}
 		System.out.println(currentParks);
+		
+//		Double gasCost = gasCalc(drivingDistance);
+//		session.setAttribute("GasCost", gasCost);
+		session.setAttribute("ParkPrice", parkPrice);
+
 		mv.addObject("event", event);
 		mv.addObject("Parks", currentParks);
 		mv.addObject("userparking", userparking);
@@ -149,7 +156,7 @@ public class RideController {
 	}
 
 	@SuppressWarnings("unused")
-	private List<ParkingSpot> psd(HttpSession session) {
+	private List<ParkingSpot> parkingSpotDistance(HttpSession session) {
 		List<ParkingSpot> psList = new ArrayList<ParkingSpot>();
 		List<ParkingSpot> fullList = pd.findall();
 		double howFar = (double) session.getAttribute("howFar");
@@ -162,4 +169,8 @@ public class RideController {
 		return psList;
 	}
 
+	public Double gasCalc(Double drivingDistance) {
+		Double gasPrice = drivingDistance * 0.525;
+		return gasPrice;
+	}
 }
