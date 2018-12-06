@@ -4,6 +4,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ticketmaster.discovery.model.Classification;
 import com.ticketmaster.discovery.model.Date;
 
 public class Event {
@@ -15,7 +16,14 @@ public class Event {
 	@JsonProperty("_embedded")
 	private Embedded1 _embedded;
 	private Date dates;
+	private Classification classification;
 	
+	public Classification getClassification() {
+		return classification;
+	}
+	public void setClassification(Classification classification) {
+		this.classification = classification;
+	}
 	public String getId() {
 		return id;
 	}
