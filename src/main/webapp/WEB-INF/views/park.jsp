@@ -34,6 +34,7 @@
 	</div>
 
 	<div>
+<<<<<<< HEAD
 	<form method="post" action="/park">
 		<table>
 			<c:forEach
@@ -53,6 +54,24 @@
 			</c:forEach>
 
 		<br>
+=======
+	<table>
+	<c:forEach var = "park" items = "${Parks }" >
+		<tr>
+        	<td>${park.locationId}</td>
+        	<td>${park.purchaseoption[0].price.usd}</td>
+        	<td>${park.distance.straightline.getDescription()}</td>
+        	<td>${park.embedded.location.address1 }</td>
+        	<td>${park.embedded.location.name }</td>
+        	<td>${park.embedded.location.city }</td>
+        </tr>
+      </c:forEach>
+	</table>
+	<br>
+	<h2>User found parking locations</h2>
+	<table>
+	<c:forEach var = "userpark" items = "${userparking }" >
+>>>>>>> fadef45dfd6cc690c7754d12fb402e360cacf6f4
 		<tr>
 					<td>_</td>
 					<td>_</td>
