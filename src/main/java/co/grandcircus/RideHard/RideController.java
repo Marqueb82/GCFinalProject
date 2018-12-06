@@ -32,7 +32,7 @@ public class RideController {
 	@Autowired
 	private ParkWhizAPIService pwas;
 
-	//  controller to demonstrate Ticket Master API call
+	// controller to demonstrate Ticket Master API call
 	@RequestMapping("/")
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
 			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
@@ -73,24 +73,24 @@ public class RideController {
 			@RequestParam(name = "vSize", required = false) Integer vSize,
 			@RequestParam(name = "DrivingDistance", required = false) Double drivingDistance, HttpSession session,
 			RedirectAttributes redir) {
-		
+
 		if (howFar != null) {
-		session.setAttribute("howFar", howFar);
+			session.setAttribute("howFar", howFar);
 		}
 		if (vSize != null) {
-		session.setAttribute("vSize", vSize);
+			session.setAttribute("vSize", vSize);
 		}
 		if (drivingDistance != null) {
-		session.setAttribute("DriveD", drivingDistance);
+			session.setAttribute("DriveD", drivingDistance);
 		}
-		
+
 		System.out.println(drivingDistance);
 		System.out.println(session.getAttribute("DriveD"));
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		List<ParkingSpot> userparking = pd.findall();
+		List<ParkingSpot> userparking = parkingSpotDistance(session);
 
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
@@ -101,15 +101,19 @@ public class RideController {
 			if (!park.getPurchaseoption().isEmpty()) {
 				currentParks.add(park);
 			}
-	//	System.out.println(currentParks);
-		
-		Double driveDistance = (Double) session.getAttribute("DriveD"); 
+		// System.out.println(currentParks);
+
+		Double driveDistance = (Double) session.getAttribute("DriveD");
 		Double gasCost = gasCalc(driveDistance);
 		session.setAttribute("GasCost", gasCost);
-		
-		Double totalCost = gasCost + (Double) session.getAttribute("ParkPrice");
+
+		Double totalCost;
+		if (session.getAttribute("ParkPrice") != null) {
+			totalCost = gasCost + (Double) session.getAttribute("ParkPrice");
+		} else {
+			totalCost = gasCost;
+		}
 		session.setAttribute("TotalCost", totalCost);
-		
 
 		mv.addObject("event", event);
 		mv.addObject("Parks", currentParks);
@@ -131,7 +135,7 @@ public class RideController {
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		List<ParkingSpot> userparking = pd.findall();
+		List<ParkingSpot> userparking = parkingSpotDistance(session);
 
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
@@ -148,11 +152,12 @@ public class RideController {
 		mv.addObject("userparking", userparking);
 		return mv;
 	}
-	
+
 	@RequestMapping("/park/choose")
-	private ModelAndView choose( @RequestParam(name="ParkPrice", required=false) Double parkPrice, HttpSession session, RedirectAttributes redir) {
+	private ModelAndView choose(@RequestParam(name = "ParkPrice", required = false) Double parkPrice,
+			HttpSession session, RedirectAttributes redir) {
 		session.setAttribute("ParkPrice", parkPrice);
-		
+
 		return new ModelAndView("redirect:/park");
 	}
 

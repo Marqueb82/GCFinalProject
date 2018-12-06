@@ -16,7 +16,7 @@
 
 <form action="/park" >
 	How Far:<br>
-	<input type="number" min=0 step=5 name="howFar"><br>
+	<input type="number" min=0 step=.1 name="howFar"><br>
 	Distance to Event:<br>
 	<input type="number" min=0 max=300 name="DrivingDistance"><br>
 	Vehicle Size:<br>
