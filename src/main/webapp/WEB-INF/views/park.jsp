@@ -14,7 +14,7 @@
 <title>Park</title>
 </head>
 <body>
-
+<h2>GoTo: <font size="8">${event.name }</font></h2>
 <%-- <form method="post" action="/cart/add">
         <table align="center">
             <tr>
@@ -28,10 +28,6 @@
             </c:forEach>
         </table>
         </form> --%>
-
-	<div>
-		<p>${event.name }</p>
-	</div>
 
 	<div>
 	<form method="post" action="/park/choose">

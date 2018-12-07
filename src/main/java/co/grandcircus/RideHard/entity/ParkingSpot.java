@@ -95,4 +95,10 @@ public class ParkingSpot {
 				+ address + ", city=" + city + "]";
 	}
 
+	public void setLatLong(Double[] latLong) {
+		this.latitude = latLong[0];
+		
+		
+	}
+
 }
