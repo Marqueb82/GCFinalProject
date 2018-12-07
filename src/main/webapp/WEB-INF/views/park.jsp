@@ -74,7 +74,7 @@
 					<td>${userpark.city }</td>
 					<td>${userpark.name }</td>
 					<td>${userpark.city }</td>
-					<td> <button name="ParkPrice" type="submit" value="${userpark.purchasingprice}">Select</button></td>
+					<td> <button onclick=name="ParkPrice" type="submit" value="${userpark.purchasingprice}">Select</button></td>
 					
 				</tr>
 			</c:forEach>
@@ -85,6 +85,40 @@
 			class="btn btn-info"
 			role="button"
 		>Add my own parking</a>
+	</div>
+	
+	
+	<div>
+		<table id="myTable">
+  		<tr>
+    		<td>Expenses</td>
+    		<td>Solo</td>
+    		<td>Two Passengers</td>
+    		<td>Three Passengers</td>
+    		<td>Four Passengers</td>
+  		</tr>
+  		<tr>
+    		<td>Gas Cost</td>
+    		<td>${GasCost }</td>
+     		<td>${GasCost }</td>
+     		<td>${GasCost }</td>
+     		<td>${GasCost }</td>
+  		</tr>
+  		<tr>
+     		<td>Ticket Cost</td>
+    		<td>${ParkPrice }</td>
+     		<td>${ParkPrice }</td>
+     		<td>${ParkPrice }</td>
+     		<td>${ParkPrice }</td>
+  		</tr>
+		<tr>
+			<td>Total Cost</td>
+			<td>${TotalCost }</td>
+			<td>${twoTotalCost }</td>
+			<td>${threeTotalCost }</td>
+			<td>${fourTotalCost }</td>
+		</tr>
+		</table>
 	</div>
 </body>
 </html>

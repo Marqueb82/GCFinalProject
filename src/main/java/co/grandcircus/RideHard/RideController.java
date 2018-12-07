@@ -115,6 +115,15 @@ public class RideController {
 		}
 		session.setAttribute("TotalCost", totalCost);
 
+		Double twoTotalCost = totalCost / 2;
+		session.setAttribute("twoTotalCost", twoTotalCost);
+
+		Double threeTotalCost = totalCost / 3;
+		session.setAttribute("threeTotalCost", threeTotalCost);
+
+		Double fourTotalCost = totalCost / 4;
+		session.setAttribute("fourTotalCost", fourTotalCost);
+
 		mv.addObject("event", event);
 		mv.addObject("Parks", currentParks);
 		mv.addObject("userparking", userparking);
