@@ -14,35 +14,23 @@
 <title>Index Page</title>
 </head>
 <body>
-	<h1 align="center">Get There</h1>
-	${ Events.size() }
-
+	<h1 align="center">Go To</h1>
 	<form
 		action="/"
 		method="post"
 	>
-		<p class="message">${ message }</p>
 		<p>
-			Search for an Event:
+			I want to see  
 			<input
 				name="Search"
 				class="input"
-			/>
-			<button>SUBMIT.</button>
-		</p>
-	</form>	<form
-		action="/"
-		method="post"
-	>
-		<p class="message">${ message }</p>
-		<p>
-			by City:
+			/> in this city 
 			<input
 				name="City"
 
 				class="input"
 			/>
-			<button>SUBMIT.</button>
+			<button>Submit</button>
 		</p>
 	</form>
 
