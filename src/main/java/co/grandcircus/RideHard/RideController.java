@@ -94,7 +94,7 @@ public class RideController {
 
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
-				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime());
+				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
 
 		ArrayList<Park> currentParks = new ArrayList<>();
 		for (Park park : response)

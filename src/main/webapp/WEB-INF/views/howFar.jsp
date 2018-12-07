@@ -15,17 +15,16 @@
 </div>
 
 <form action="/park" >
-	How Far:<br>
+	How Far are you willing to walk from your parking spot? <br>
 	<input type="number" min=0 step=.1 name="howFar"><br>
-	Distance to Event:<br>
+	How far are you driving to your event? <br>
 	<input type="number" min=0 max=300 name="DrivingDistance"><br>
-	Vehicle Size:<br>
+	How many people can you fit in your car? <br>
 	<input type="number" min=2 max=8 name="vSize"><br> <br>
 	<input type="submit" value="Submit">
 </form>
 
-<p>If you click the "Submit" button, the form-data will be sent to a
-	page called "/action_page.php".</p>
+
 
 
 <body>
