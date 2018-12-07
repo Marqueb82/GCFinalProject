@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
 <title>GoTo: Event Details</title>
 </head>
 <h2>GoTo: <font size="8">${event.name }</font></h2>

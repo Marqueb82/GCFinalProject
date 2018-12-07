@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="style.css">
 <meta charset="UTF-8">
 <title>Park</title>
 <style>
@@ -20,7 +21,13 @@
 }
 </style>
 </head>
-<body>
+<body ><!-- background= "https://res.cloudinary.com/simpleview/image/upload/v1505847160/clients/irvine/DestinationIrvine_Image_1_0a6518bf-368a-4723-9c37-42ec65374538.jpg" 
+alt="Parked Yellow Truck"
+background-size: cover; -->
+
+<!-- <img src="http://www.travelstart.co.ke/blog/wp-content/uploads/2018/01/pexels-photo-386009.jpg" 
+alt="Parked Yellow Truck"> -->
+
 <h2>GoTo: <font size="8">${event.name }</font></h2>
 <%-- <form method="post" action="/cart/add">
         <table align="center">

@@ -1,0 +1,27 @@
+image url
+<link rel="stylesheet" href="style.css">
+
+html {
+	background:
+		url("http://www.travelstart.co.ke/blog/wp-content/uploads/2018/01/pexels-photo-386009.jpg")
+		no-repeat center fixed;
+	background-size: cover;
+	background-position: right bottom;
+}
+
+body {
+	font-family: Helvetica;
+	font-weight: bold;
+	color: black;
+	font-size: 18px;
+	text-align: center;
+	text-align: justify;
+}
+
+h1 {
+	color: black;
+	font-size: 32px;
+	text-align: center;
+}
+
+
