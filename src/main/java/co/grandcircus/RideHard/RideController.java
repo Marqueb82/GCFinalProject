@@ -35,7 +35,7 @@ public class RideController {
 	@Autowired
 	private HereCodeAPIService geo;
 
-	// controller to demonstrate Ticket Master API call
+
 	@RequestMapping("/")
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
 			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
@@ -89,6 +89,7 @@ public class RideController {
 
 		System.out.println(drivingDistance);
 		System.out.println(session.getAttribute("DriveD"));
+		
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
