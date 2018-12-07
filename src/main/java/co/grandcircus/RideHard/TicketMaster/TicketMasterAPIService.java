@@ -64,5 +64,13 @@ public class TicketMasterAPIService {
 		TicketMasterAPIResponse response = restTemplate.getForObject(url, TicketMasterAPIResponse.class);
 		return response;
 	}
+	
+	//Method to acquire price information based on "eventId". Also event details for header. Other into comes in, but those things are the point of this one
+	public TMDetailResponse eventDetails(String eventId) {
+		String url = "https://app.ticketmaster.com//discovery/v2/events/" + eventId;
+		TMDetailResponse response = restTemplate.getForObject(url, TMDetailResponse.class);
+		return response;
+	}
+	
 
 }
