@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import co.grandcircus.RideHard.GeoCodeAPI.GeoCodeAPIService;
+import co.grandcircus.RideHard.HereCodeAPI.HereCodeAPIService;
 import co.grandcircus.RideHard.ParkDao.ParkDao;
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
@@ -33,7 +33,7 @@ public class RideController {
 	@Autowired
 	private ParkWhizAPIService pwas;
 	@Autowired
-	private GeoCodeAPIService geo;
+	private HereCodeAPIService geo;
 
 	// controller to demonstrate Ticket Master API call
 	@RequestMapping("/")

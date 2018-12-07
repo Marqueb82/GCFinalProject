@@ -19,6 +19,14 @@ public class ParkingSpot {
 	private Double longitude;
 
 	public ParkingSpot() {
+	
+	}
+	public ParkingSpot(Long id, String purchasingprice, String name, String address, String city) {
+		this.id = id;
+		this.purchasingprice = purchasingprice;
+		this.name = name;
+		this.address = address;
+		this.city = city;
 	}
 
 	public ParkingSpot(Long id, String purchasingprice, String name, String address, String city, Double latitude,
@@ -97,6 +105,7 @@ public class ParkingSpot {
 
 	public void setLatLong(Double[] latLong) {
 		this.latitude = latLong[0];
+		this.longitude = latLong[1];
 		
 		
 	}
