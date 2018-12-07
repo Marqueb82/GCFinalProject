@@ -12,6 +12,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Park</title>
+<style>
+#myTable td{
+  border: 1px solid black;
+  padding: 12px;
+  border-collapse: collapse;
+}
+</style>
 </head>
 <body>
 <h2>GoTo: <font size="8">${event.name }</font></h2>
