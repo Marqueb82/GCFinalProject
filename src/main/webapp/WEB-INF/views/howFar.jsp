@@ -21,7 +21,7 @@
 <body>
 
 <div class="jumbotron">
-	<h1>GoTo <font size="8">${event.name }</font></h1>
+	<h1>GoTo <font size="8">${Event.name }</font></h1>
 </div>
 
 <form action="/park">

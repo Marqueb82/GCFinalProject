@@ -67,7 +67,7 @@ public class RideController {
 		ModelAndView mv3 = new ModelAndView("howFar");
 		Event event = selectedEvent(eventId, session);
 
-		mv3.addObject("event", event);
+	//	mv3.addObject("event", event);
 		session.setAttribute("Event", event);
 		return mv3;
 	}
@@ -95,18 +95,19 @@ public class RideController {
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		
+
 		// 1. Find parking
 		List<Park> dbParking = findParkingFromDatabase(session);
 		List<Park> apiParking = findParkingFromApi(session);
-		
+
 		// 2. Combine parking
 		List<Park> allParking = new ArrayList<>();
 		allParking.addAll(dbParking);
 		allParking.addAll(apiParking);
-		
+
 		// 3. Resort the whole list
 		// TODO
+		orderList(allParking, session);
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
 		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
@@ -123,7 +124,7 @@ public class RideController {
 		if (session.getAttribute("ParkPrice") != null) {
 			totalCost = gasCost + (Double) session.getAttribute("ParkPrice") + ticketPrice;
 		} else {
-			totalCost = gasCost  + ticketPrice;
+			totalCost = gasCost + ticketPrice;
 		}
 		session.setAttribute("TotalCost", totalCost);
 
@@ -148,38 +149,17 @@ public class RideController {
 
 	@RequestMapping("/add/parkingspot")
 	public ModelAndView addPark(Park parkingSpot, HttpSession session, RedirectAttributes redir) {
-		Double howFar = (Double) session.getAttribute("howFar");
-		ModelAndView mv = new ModelAndView("park");
 		if ((parkingSpot.getLatitude() == null) || (parkingSpot.getLongitude() == null)) {
 			parkingSpot.setLatLong(geo.getLatLong(parkingSpot));
 		}
 		pd.create(parkingSpot);
-
-		Event event = (Event) session.getAttribute("Event");
-		// String eventId = event.getId();
-		// Event event = selectedEvent(eventId, session);
-		List<Park> userparking = findParkingFromDatabase(session);
-
-		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
-				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
-				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
-
-		ArrayList<Park> currentParks = new ArrayList<>();
-		for (Park park : response) {
-			if (park.getPrice() != null) {
-				currentParks.add(park);
-			}
-		}
-		System.out.println(currentParks);
-		mv.addObject("event", event);
-		mv.addObject("Parks", currentParks);
-		mv.addObject("userparking", userparking);
-		return mv;
+		return new ModelAndView("redirect:/park");
 	}
 
 	@RequestMapping("/park/choose/")
 	private ModelAndView choose(@RequestParam(name = "Name", required = false) String name,
-			@RequestParam(name = "Price", required = false) Double parkPrice, HttpSession session, RedirectAttributes redir) {
+			@RequestParam(name = "Price", required = false) Double parkPrice, HttpSession session,
+			RedirectAttributes redir) {
 		session.setAttribute("ParkPrice", parkPrice);
 		session.setAttribute("Name", name);
 
@@ -202,11 +182,11 @@ public class RideController {
 		}
 		return event;
 	}
-	
+
 	private List<Park> findParkingFromApi(HttpSession session) {
 		double howFar = (double) session.getAttribute("howFar");
 		Event event = (Event) session.getAttribute("Event");
-		
+
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
 				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
@@ -220,12 +200,11 @@ public class RideController {
 		return currentParks;
 	}
 
-	
 	private List<Park> findParkingFromDatabase(HttpSession session) {
 		double howFarMiles = (double) session.getAttribute("howFar");
 		double howFarFeet = howFarMiles * 5280;
 		Event event = (Event) session.getAttribute("Event");
-		
+
 		List<Park> psList = new ArrayList<Park>();
 		List<Park> fullList = pd.findall();
 		for (Park park : fullList) {
@@ -247,10 +226,13 @@ public class RideController {
 		session.invalidate();
 		return new ModelAndView("redirect:/");
 	}
-	
+
 	public List<Park> orderList(List<Park> parks, HttpSession session) {
 		Event event = (Event) session.getAttribute("Event");
-		for (Park park: parks) {
+		for (Park park : parks) {
+			if ((park.getLatitude() == null) || (park.getLongitude() == null)) {
+				park.setLatLong(geo.getLatLong(park));
+			}
 			park.setDistanceInFeet(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
 		}
 		Collections.sort(parks, new SortByDistance());
