@@ -41,7 +41,7 @@ public class RideController {
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
 			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
 			RedirectAttributes redir) throws IOException {
-		ModelAndView mv = new ModelAndView("tmAPI");
+		ModelAndView mv = new ModelAndView("tmAPI"); 
 		TicketMasterAPIResponse pr;
 		if (searchTerm == null && searchCity == null) {
 			searchTerm = " ";

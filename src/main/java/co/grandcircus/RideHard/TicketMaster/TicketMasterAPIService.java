@@ -46,20 +46,20 @@ public class TicketMasterAPIService {
 	}
 
 	public TicketMasterAPIResponse searchEvents(String keyword) {
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=100&apikey=" + apiKey + "&keyword="
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=15&apikey=" + apiKey + "&keyword="
 				+ keyword + "";
 		TicketMasterAPIResponse response = restTemplate.getForObject(url, TicketMasterAPIResponse.class);
 		return response;
 	}
 	
 	public TicketMasterAPIResponse citySearchEvents(String city) {
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=100&apikey=" + apiKey + "&city=" + city + "";
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=15&apikey=" + apiKey + "&city=" + city + "";
 		TicketMasterAPIResponse response = restTemplate.getForObject(url, TicketMasterAPIResponse.class);
 		return response;
 	}
 	
 	public TicketMasterAPIResponse searchEvents(String keyword, String city) {
-		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=100&apikey=" + apiKey + "&keyword="
+		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=15&apikey=" + apiKey + "&keyword="
 				+ keyword + "&city=" + city + "";
 		TicketMasterAPIResponse response = restTemplate.getForObject(url, TicketMasterAPIResponse.class);
 		return response;

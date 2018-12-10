@@ -19,8 +19,8 @@
 </head>
 <style>
 .jumbotron {
-	background-color: #3E1869; /* maroon */
-	color: #ccffcc; /*lime green */
+	background-color: #EE6032; /* orange*/
+	color: #FfFfFF /* white */
 }
 </style>
 
@@ -31,7 +31,7 @@
 	</div>
 	<form action="/" method="post">
 
-		<p align ="center">
+		<p align="center">
 			<font size="3">I want to see</font> <input name="Search"
 				class="input" /><font size="3"> in this city</font> <input
 				name="City" class="input" />
@@ -43,11 +43,11 @@
 	<table class="table table-hover">
 		<thead>
 
-			<tr bgcolor="#ccffcc">
+			<tr bgcolor="#F4CABC">
 
 				<th><font size="4">Item Name</font></th>
 				<th><font size="4">Item Venue</font></th>
-				<th><font size="4">Item ID</font></th>
+
 				<th><font size="4">Date</font></th>
 				<th><font size="4">time</font></th>
 				<th><font size="4"></font></th>
@@ -59,10 +59,10 @@
 		<tbody>
 			<c:forEach var="item" items="${Events}">
 
-				<tr bgcolor ="#E1E2F7">
+				<tr bgcolor="#FFFAF8  ">
 					<td>${item.name}</td>
 					<td>${ item._embedded.venues[0].name }</td>
-					<td>${ item.id }</td>
+
 					<td>${ item.dates.start.localDate }</td>
 					<td>${ item.dates.start.localTime }</td>
 					<td><a href="/howFar/${ item.id }">

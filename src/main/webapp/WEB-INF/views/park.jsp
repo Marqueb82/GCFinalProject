@@ -30,8 +30,8 @@
 ></script>
 <style>
 .jumbotron {
-	background-color: #3E1869; /* maroon */
-	color: #ccffcc; /*lime green */
+background-color: #EE6032; /* orange*/
+	color: #FfFfFF /* white */
 }
 
 #myTable td {
@@ -55,7 +55,7 @@
 	</h1>
 
 	<div>
-			<table>
+			<table class = "event">
 				<tr>
 					<td>Name</td>
 					<td>Address</td>
