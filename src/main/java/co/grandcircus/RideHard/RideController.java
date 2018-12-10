@@ -34,7 +34,7 @@ public class RideController {
 	private ParkWhizAPIService pwas;
 	@Autowired
 	private HereCodeAPIService geo;
-
+	
 
 	@RequestMapping("/")
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
@@ -64,10 +64,7 @@ public class RideController {
 	public ModelAndView distance(@PathVariable("eventId") String eventId, HttpSession session,
 			RedirectAttributes redir) {
 		ModelAndView mv3 = new ModelAndView("howFar");
-		Event event = selectedEvent(eventId, session);
-
-		mv3.addObject("event", event);
-		session.setAttribute("Event", event);
+		session.setAttribute("Event", selectedEvent(eventId, session));
 		return mv3;
 	}
 
@@ -89,7 +86,7 @@ public class RideController {
 
 		System.out.println(drivingDistance);
 		System.out.println(session.getAttribute("DriveD"));
-		
+
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
@@ -194,13 +191,15 @@ public class RideController {
 		return event;
 	}
 
-	@SuppressWarnings("unused")
 	private List<ParkingSpot> parkingSpotDistance(HttpSession session) {
 		List<ParkingSpot> psList = new ArrayList<ParkingSpot>();
 		List<ParkingSpot> fullList = pd.findall();
 		double howFar = (double) session.getAttribute("howFar");
+		System.out.println("Can you see me? How about how far?");
 		Event event = (Event) session.getAttribute("Event");
+		System.out.println("No, look at me, instead");
 		for (ParkingSpot park : fullList) {
+			System.out.println(event + "Hey, look at me!");
 			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFar) {
 				psList.add(park);
 			}
