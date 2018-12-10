@@ -228,7 +228,7 @@ public class Park {
 
 	public void setPurchaseoption(List<PurchaseOptions> purchaseoption) {
 		if (purchaseoption.size() == 0) {
-			this.price = 99999.93;
+			this.price = null;
 		} else {
 			this.purchaseoption = purchaseoption;
 			this.price = purchaseoption.get(0).getPrice().getUsd();
