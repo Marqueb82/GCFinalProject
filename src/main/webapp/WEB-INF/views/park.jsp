@@ -39,7 +39,7 @@
 	padding: 12px;
 	border-collapse: collapse;
 }
-*
+
 /
 </style>
 </head>
@@ -84,6 +84,7 @@
 									value="${park.name}"
 								>
 								<button
+									class="btn btn-success"
 									name="Price"
 									type="submit"
 									value="${park.price}"
