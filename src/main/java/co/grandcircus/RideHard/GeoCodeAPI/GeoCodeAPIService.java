@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import co.grandcircus.RideHard.entity.ParkingSpot;
+import co.grandcircus.RideHard.ParkWhizApi.Park;
 
 @Component
 public class GeoCodeAPIService {
@@ -14,7 +14,7 @@ public class GeoCodeAPIService {
 
 	RestTemplate restTemplate = new RestTemplate();
 
-	public Double[] getLatLong(ParkingSpot park) {
+	public Double[] getLatLong(Park park) {
 		String addy = park.getAddress() + park.getCity();
 		String url = "https://api.geocod.io/v1.3/geocode?q=" + addy + "&api_key=" + apiKey;
 		GeoCodeResponse response = restTemplate.getForObject(url, GeoCodeResponse.class);

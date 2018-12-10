@@ -19,7 +19,8 @@ public class ParkWhizAPIService {
 		// Map<String, String> request = new HashMap<>();
 		// request.put("q=",
 
-		String url = "http://api.parkwhiz.com/v4/quotes/?q=coordinates:" + latitude + "," + longitude +" distance="+howFar+"&start_time=" + date + "T" + time + "&end_time=" + date + "T23:59&api_key="
+		String url = "http://api.parkwhiz.com/v4/quotes/?q=coordinates:" + latitude + "," + longitude + " distance="
+				+ howFar + "&sort=distance&start_time=" + date + "T" + time + "&end_time=" + date + "T23:59:59&api_key="
 				+ apiKey;
 		System.out.println(url);
 		Park[] response = restTemplate.getForObject(url, Park[].class);

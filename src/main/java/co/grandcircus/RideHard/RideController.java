@@ -2,6 +2,7 @@ package co.grandcircus.RideHard;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,9 +20,10 @@ import co.grandcircus.RideHard.ParkDao.ParkDao;
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
 import co.grandcircus.RideHard.TicketMaster.Event;
+import co.grandcircus.RideHard.TicketMaster.TMDetailResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIResponse;
 import co.grandcircus.RideHard.TicketMaster.TicketMasterAPIService;
-import co.grandcircus.RideHard.entity.ParkingSpot;
+import co.grandcircus.RideHard.entity.SortByDistance;
 
 @Controller
 public class RideController {
@@ -34,7 +36,6 @@ public class RideController {
 	private ParkWhizAPIService pwas;
 	@Autowired
 	private HereCodeAPIService geo;
-	
 
 	@RequestMapping("/")
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
@@ -64,7 +65,10 @@ public class RideController {
 	public ModelAndView distance(@PathVariable("eventId") String eventId, HttpSession session,
 			RedirectAttributes redir) {
 		ModelAndView mv3 = new ModelAndView("howFar");
-		session.setAttribute("Event", selectedEvent(eventId, session));
+		Event event = selectedEvent(eventId, session);
+
+		mv3.addObject("event", event);
+		session.setAttribute("Event", event);
 		return mv3;
 	}
 
@@ -91,26 +95,34 @@ public class RideController {
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		List<ParkingSpot> userparking = parkingSpotDistance(session);
+		List<Park> userparking = parkingSpotDistance(session);
 
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
 				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
 
 		ArrayList<Park> currentParks = new ArrayList<>();
-		for (Park park : response)
-			if (!park.getPurchaseoption().isEmpty()) {
+		for (Park park : response) {
+			if (park.getPrice() != 99999.93) {
 				currentParks.add(park);
 			}
-		// System.out.println(currentParks);
+		}
+		System.out.println(currentParks);
+
+		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
+		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
+		String range = "$" + detail.getPriceRanges()[0].getMax() + " - $" + detail.getPriceRanges()[0].getMin();
+
+		session.setAttribute("TicketPrice", ticketPrice);
+		session.setAttribute("TicketRange", range);
 
 		Double driveDistance = (Double) session.getAttribute("DriveD");
 		Double gasCost = gasCalc(driveDistance);
 		session.setAttribute("GasCost", gasCost);
 
 		Double totalCost;
-		if (session.getAttribute("ParkPrice") != null) {
-			totalCost = gasCost + (Double) session.getAttribute("ParkPrice");
+		if (session.getAttribute("Park") != null) {
+			totalCost = gasCost + (Double) session.getAttribute("ParkPrice") + ticketPrice;
 		} else {
 			totalCost = gasCost;
 		}
@@ -137,7 +149,7 @@ public class RideController {
 	}
 
 	@RequestMapping("/add/parkingspot")
-	public ModelAndView addPark(ParkingSpot parkingSpot, HttpSession session, RedirectAttributes redir) {
+	public ModelAndView addPark(Park parkingSpot, HttpSession session, RedirectAttributes redir) {
 		Double howFar = (Double) session.getAttribute("howFar");
 		ModelAndView mv = new ModelAndView("park");
 		if ((parkingSpot.getLatitude() == null) || (parkingSpot.getLongitude() == null)) {
@@ -148,7 +160,7 @@ public class RideController {
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		List<ParkingSpot> userparking = parkingSpotDistance(session);
+		List<Park> userparking = parkingSpotDistance(session);
 
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
@@ -166,10 +178,11 @@ public class RideController {
 		return mv;
 	}
 
-	@RequestMapping("/park/choose")
-	private ModelAndView choose(@RequestParam(name = "ParkPrice", required = false) Double parkPrice,
-			HttpSession session, RedirectAttributes redir) {
+	@RequestMapping("/park/choose/")
+	private ModelAndView choose(@RequestParam(name = "Name", required = false) String name,
+			@RequestParam(name = "Price", required = false) Double parkPrice, HttpSession session, RedirectAttributes redir) {
 		session.setAttribute("ParkPrice", parkPrice);
+		session.setAttribute("Name", name);
 
 		return new ModelAndView("redirect:/park");
 	}
@@ -191,24 +204,38 @@ public class RideController {
 		return event;
 	}
 
-	private List<ParkingSpot> parkingSpotDistance(HttpSession session) {
-		List<ParkingSpot> psList = new ArrayList<ParkingSpot>();
-		List<ParkingSpot> fullList = pd.findall();
+	@SuppressWarnings("unused")
+	private List<Park> parkingSpotDistance(HttpSession session) {
+		List<Park> psList = new ArrayList<Park>();
+		List<Park> fullList = pd.findall();
 		double howFar = (double) session.getAttribute("howFar");
-		System.out.println("Can you see me? How about how far?");
 		Event event = (Event) session.getAttribute("Event");
-		System.out.println("No, look at me, instead");
-		for (ParkingSpot park : fullList) {
-			System.out.println(event + "Hey, look at me!");
+		for (Park park : fullList) {
 			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFar) {
 				psList.add(park);
 			}
 		}
+		psList = orderList(psList, session);
 		return psList;
 	}
 
 	public Double gasCalc(Double drivingDistance) {
 		Double gasPrice = drivingDistance * 0.525;
 		return gasPrice;
+	}
+
+	@RequestMapping("/back")
+	public ModelAndView back(HttpSession session) {
+		session.invalidate();
+		return new ModelAndView("redirect:/");
+	}
+	
+	public List<Park> orderList(List<Park> parks, HttpSession session) {
+		Event event = (Event) session.getAttribute("Event");
+		for (Park park: parks) {
+			park.setStraightLine(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
+		}
+		Collections.sort(parks, new SortByDistance());
+		return parks;
 	}
 }

@@ -1,6 +1,6 @@
 package co.grandcircus.RideHard.TicketMaster;
 
-import co.grandcircus.RideHard.entity.ParkingSpot;
+import co.grandcircus.RideHard.ParkWhizApi.Park;
 
 public class Location {
 
@@ -37,15 +37,15 @@ public class Location {
 	public Location() {
 	}
 
-	public double distanceFrom(ParkingSpot other) {
+	public double distanceFrom(Park park) {
 		
 		double latOne = Double.parseDouble(latitude);
 		double longOne = Double.parseDouble(longitude);
 		
 		double lat1 = Math.toRadians(latOne);
 		double long1 = Math.toRadians(longOne);
-		double lat2 = Math.toRadians(other.getLatitude());
-		double long2 = Math.toRadians(other.getLongitude());
+		double lat2 = Math.toRadians(park.getLatitude());
+		double long2 = Math.toRadians(park.getLongitude());
 		// apply the spherical law of cosines with a triangle composed of the
 		// two locations and the north pole
 		double theCos = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long1 - long2);

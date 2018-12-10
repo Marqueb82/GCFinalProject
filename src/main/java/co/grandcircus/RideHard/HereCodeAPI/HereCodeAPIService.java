@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import co.grandcircus.RideHard.entity.ParkingSpot;
+import co.grandcircus.RideHard.ParkWhizApi.Park;
 
 @Component
 public class HereCodeAPIService {
@@ -16,7 +16,7 @@ public class HereCodeAPIService {
 
 	RestTemplate restTemplate = new RestTemplate();
 
-	public Double[] getLatLong(ParkingSpot park) {
+	public Double[] getLatLong(Park park) {
 		String addy = park.getAddress() + " " + park.getCity();
 		System.out.println("" + addy);
 		String url = "https://geocoder.api.here.com/6.2/geocode.json\r\n?app_id=" + apId + "&app_code=" + apiCode
