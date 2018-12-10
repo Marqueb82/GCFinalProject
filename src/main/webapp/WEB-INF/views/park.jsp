@@ -139,6 +139,12 @@ background-color: #EE6032; /* orange*/
 			<td>${ParkPrice }</td>
 			<td>${ParkPrice }</td>
 			<td>${ParkPrice }</td>
+		</tr>		<tr>
+			<td>Ticket Price</td>
+			<td>${TicketRange }</td>
+			<td>-</td>
+			<td>-</td>
+			<td>-</td>
 		</tr>
 		<tr>
 			<td>Total Cost</td>

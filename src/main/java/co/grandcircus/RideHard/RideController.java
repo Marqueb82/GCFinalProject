@@ -103,7 +103,7 @@ public class RideController {
 
 		ArrayList<Park> currentParks = new ArrayList<>();
 		for (Park park : response) {
-			if (park.getPrice() != 99999.93) {
+			if (park.getPrice() != null) {
 				currentParks.add(park);
 			}
 		}
@@ -111,7 +111,7 @@ public class RideController {
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
 		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
-		String range = "$" + detail.getPriceRanges()[0].getMax() + " - $" + detail.getPriceRanges()[0].getMin();
+		String range = "$" + detail.getPriceRanges()[0].getMin() + " - $" + detail.getPriceRanges()[0].getMax();
 
 		session.setAttribute("TicketPrice", ticketPrice);
 		session.setAttribute("TicketRange", range);
@@ -121,10 +121,10 @@ public class RideController {
 		session.setAttribute("GasCost", gasCost);
 
 		Double totalCost;
-		if (session.getAttribute("Park") != null) {
+		if (session.getAttribute("ParkPrice") != null) {
 			totalCost = gasCost + (Double) session.getAttribute("ParkPrice") + ticketPrice;
 		} else {
-			totalCost = gasCost;
+			totalCost = gasCost  + ticketPrice;
 		}
 		session.setAttribute("TotalCost", totalCost);
 
@@ -167,10 +167,11 @@ public class RideController {
 				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
 
 		ArrayList<Park> currentParks = new ArrayList<>();
-		for (Park park : response)
-			if (!park.getPurchaseoption().isEmpty()) {
+		for (Park park : response) {
+			if (park.getPrice() != null) {
 				currentParks.add(park);
 			}
+		}
 		System.out.println(currentParks);
 		mv.addObject("event", event);
 		mv.addObject("Parks", currentParks);
