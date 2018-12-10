@@ -95,19 +95,19 @@ public class RideController {
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		List<Park> userparking = parkingSpotDistance(session);
-
-		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
-				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
-				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
-
-		ArrayList<Park> currentParks = new ArrayList<>();
-		for (Park park : response) {
-			if (park.getPrice() != 99999.93) {
-				currentParks.add(park);
-			}
-		}
-		System.out.println(currentParks);
+		
+		// 1. Find parking
+		List<Park> dbParking = findParkingFromDatabase(session);
+		List<Park> apiParking = findParkingFromApi(session);
+		
+		// 2. Combine parking
+		List<Park> allParking = new ArrayList<>();
+		allParking.addAll(dbParking);
+		allParking.addAll(apiParking);
+		
+		// 3. Resort the whole list
+		// TODO
+		
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
 		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
@@ -138,8 +138,7 @@ public class RideController {
 		session.setAttribute("fourTotalCost", fourTotalCost);
 
 		mv.addObject("event", event);
-		mv.addObject("Parks", currentParks);
-		mv.addObject("userparking", userparking);
+		mv.addObject("allParking", allParking);
 		return mv;
 	}
 
@@ -160,7 +159,7 @@ public class RideController {
 		Event event = (Event) session.getAttribute("Event");
 		// String eventId = event.getId();
 		// Event event = selectedEvent(eventId, session);
-		List<Park> userparking = parkingSpotDistance(session);
+		List<Park> userparking = findParkingFromDatabase(session);
 
 		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
 				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
@@ -168,7 +167,7 @@ public class RideController {
 
 		ArrayList<Park> currentParks = new ArrayList<>();
 		for (Park park : response)
-			if (!park.getPurchaseoption().isEmpty()) {
+			if (park.getPrice() != 99999.93) {
 				currentParks.add(park);
 			}
 		System.out.println(currentParks);
@@ -203,15 +202,34 @@ public class RideController {
 		}
 		return event;
 	}
-
-	@SuppressWarnings("unused")
-	private List<Park> parkingSpotDistance(HttpSession session) {
-		List<Park> psList = new ArrayList<Park>();
-		List<Park> fullList = pd.findall();
+	
+	private List<Park> findParkingFromApi(HttpSession session) {
 		double howFar = (double) session.getAttribute("howFar");
 		Event event = (Event) session.getAttribute("Event");
+		
+		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
+				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
+				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
+
+		ArrayList<Park> currentParks = new ArrayList<>();
+		for (Park park : response) {
+			if (park.getPrice() != 99999.93) {
+				currentParks.add(park);
+			}
+		}
+		return currentParks;
+	}
+
+	
+	private List<Park> findParkingFromDatabase(HttpSession session) {
+		double howFarMiles = (double) session.getAttribute("howFar");
+		double howFarFeet = howFarMiles * 5280;
+		Event event = (Event) session.getAttribute("Event");
+		
+		List<Park> psList = new ArrayList<Park>();
+		List<Park> fullList = pd.findall();
 		for (Park park : fullList) {
-			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFar) {
+			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFarFeet) {
 				psList.add(park);
 			}
 		}
@@ -233,7 +251,7 @@ public class RideController {
 	public List<Park> orderList(List<Park> parks, HttpSession session) {
 		Event event = (Event) session.getAttribute("Event");
 		for (Park park: parks) {
-			park.setStraightLine(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
+			park.setDistanceInFeet(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
 		}
 		Collections.sort(parks, new SortByDistance());
 		return parks;

@@ -57,17 +57,19 @@
 	<div>
 			<table>
 				<tr>
-					<td>Name</td>
-					<td>Address</td>
-					<td>City</td>
-					<td>Price</td>
+					<th>Distance</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>Price</th>
 
 					<tr>
 				<c:forEach
 						var="park"
-						items="${Parks }"
+						items="${allParking }"
 					>
 						<tr>
+						<td>${park.distanceDescription}</td>
 						<td>${park.name}</td>
 						<td>${park.address}</td>
 						<td>${park.city }</td>
@@ -92,11 +94,7 @@
 							</td>
 						</form>
 					</tr>
-					</c:forEach><tr>
-					<td>
-						<h2>User found parking locations</h2>
-					</td>
-				</tr>
+					</c:forEach>
 			</table>
 		<a
 			href="/parkingspot"

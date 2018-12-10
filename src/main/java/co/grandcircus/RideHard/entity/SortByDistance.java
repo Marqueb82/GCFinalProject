@@ -4,6 +4,6 @@ package co.grandcircus.RideHard.entity;
 import co.grandcircus.RideHard.ParkWhizApi.Park;
  public class SortByDistance implements Comparator<Park> {
  	public int compare(Park a, Park b) {
-		return (int) (a.getStraightLine() - b.getStraightLine());
+		return (int) (a.getDistanceInFeet() - b.getDistanceInFeet());
 	}
  } 
