@@ -105,41 +105,57 @@
 	</div>
 
 
-	<div>
-		<table
-			class="table table-bordered"
-			id="myTable"
-		>
-			<tr>
-				<td>Expenses</td>
-				<td>Solo</td>
-				<td>Two Passengers</td>
-				<td>Three Passengers</td>
-				<td>Four Passengers</td>
-			</tr>
-			<tr>
-				<td>Gas Cost</td>
-				<td>${GasCost }</td>
-				<td>${GasCost }</td>
-				<td>${GasCost }</td>
-				<td>${GasCost }</td>
-			</tr>
-			<tr>
-				<td>Ticket Cost</td>
-				<td>${ParkPrice }</td>
-				<td>${ParkPrice }</td>
-				<td>${ParkPrice }</td>
-				<td>${ParkPrice }</td>
-			</tr>
-			<tr>
-				<td>Total Cost</td>
-				<td>${TotalCost }</td>
-				<td>${twoTotalCost }</td>
-				<td>${threeTotalCost }</td>
-				<td>${fourTotalCost }</td>
-			</tr>
-		</table>
-				<a href="/back">back to start</a>
+	<a href="#myModal" role="button" class="btn" data-toggle="modal">See modal</a>
+	
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+     <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Possible Cost</h4>
+                  </div>
+        <div class="modal-body">
+	<table id="myTable">
+		<tr>
+			<td>Expenses</td>
+			<td>Solo</td>
+			<td>Two Passengers</td>
+			<td>Three Passengers</td>
+			<td>Four Passengers</td>
+		</tr>
+		<tr>
+			<td>Gas Cost</td>
+			<td>${GasCost }</td>
+			<td>${GasCost }</td>
+			<td>${GasCost }</td>
+			<td>${GasCost }</td>
+		</tr>
+		<tr>
+			<td>Parking Cost</td>
+			<td>${ParkPrice }</td>
+			<td>${ParkPrice }</td>
+			<td>${ParkPrice }</td>
+			<td>${ParkPrice }</td>
+		</tr>
+		<tr>
+			<td>Total Cost</td>
+			<td>${TotalCost }</td>
+			<td>${twoTotalCost }</td>
+			<td>${threeTotalCost }</td>
+			<td>${fourTotalCost }</td>
+		</tr>
+	</table>
 	</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
+	<a href="/back">back to start</a>
 </body>
 </html>
