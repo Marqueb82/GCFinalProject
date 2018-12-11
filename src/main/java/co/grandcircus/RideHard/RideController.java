@@ -43,15 +43,22 @@ public class RideController {
 			RedirectAttributes redir) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		TicketMasterAPIResponse pr;
+		
 		if (searchTerm == null && searchCity == null) {
 			searchTerm = " ";
 			searchCity = " ";
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		} else if (searchTerm == null) {
+			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
+			}
 			pr = tmAPI.citySearchEvents(searchCity);
 		} else if (searchCity == null) {
 			pr = tmAPI.searchEvents(searchTerm);
 		} else {
+			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
+			}
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		}
 
@@ -60,7 +67,7 @@ public class RideController {
 		session.setAttribute("Events", events);
 		return mv;
 	}
-
+	
 	@RequestMapping("/howFar/{eventId}")
 	public ModelAndView distance(@PathVariable("eventId") String eventId, HttpSession session,
 			RedirectAttributes redir) {
@@ -241,7 +248,7 @@ public class RideController {
 		Double tempValue = null;
 		for (int i = 0; i < allParking.size(); i++) {
 						
-			Double value = (allParking.get(i).getPrice() * allParking.get(i).getPrice()) + (allParking.get(i).getDistanceInFeet() * allParking.get(i).getDistanceInFeet());
+			Double value = (allParking.get(i).getPrice() * allParking.get(i).getPrice()) + (allParking.get(i).getDistanceInFeet());
 			if ((tempValue == null) || (value < tempValue)) {
 				tempValue = value;
 				temp = allParking.get(i);

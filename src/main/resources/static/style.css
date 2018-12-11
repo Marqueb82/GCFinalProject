@@ -1,5 +1,19 @@
+body {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	color: #a5a5a5;
+	background: #222;
+}
 
-<font size="20">
 
 
+.input {
+	transition: all .5s;
+	text-align: center;
+}
 
+.input:hover {
+	transform: scale(1.1);
+}
