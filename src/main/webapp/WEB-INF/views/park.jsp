@@ -127,31 +127,32 @@
 		<tr>
 			<td>Gas Cost</td>
 			<td>${GasCost }</td>
-			<td>${GasCost }</td>
-			<td>${GasCost }</td>
-			<td>${GasCost }</td>
+			<td>${GasCost / 2 }</td>
+			<td>${GasCost / 3 }</td>
+			<td>${GasCost / 4 }</td>
 		</tr>
 		<tr>
 			<td>Parking Cost</td>
 			<td>${ParkPrice }</td>
-			<td>${ParkPrice }</td>
-			<td>${ParkPrice }</td>
-			<td>${ParkPrice }</td>
+			<td>${ParkPrice / 2}</td>
+			<td>${ParkPrice / 3}</td>
+			<td>${ParkPrice / 4}</td>
 		</tr>		<tr>
 			<td>Ticket Price</td>
 			<td>${TicketRange }</td>
-			<td>-</td>
-			<td>-</td>
-			<td>-</td>
+			<td>${TicketRange }</td>
+			<td>${TicketRange }</td>
+			<td>${TicketRange }</td>
 		</tr>
 		<tr>
 			<td>Total Cost</td>
-			<td>${TotalCost }</td>
-			<td>${twoTotalCost }</td>
-			<td>${threeTotalCost }</td>
-			<td>${fourTotalCost }</td>
+			<td>${TicketPrice + ParkPrice + GasCost }</td>
+			<td>${TicketPrice + (ParkPrice/2) + (GasCost/2) }</td>
+			<td>${TicketPrice + (ParkPrice/3) + (GasCost/3) }</td>
+			<td>${TicketPrice + (ParkPrice/4) + (GasCost/4) }</td>
 		</tr>
 	</table>
+	<p>*The average ticket cost is used in calculating total cost.*</p>
 	</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

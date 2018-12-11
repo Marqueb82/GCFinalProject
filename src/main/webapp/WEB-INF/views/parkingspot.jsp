@@ -43,11 +43,12 @@
   <br></br>
   Name:<br>
   <input type="text" name="name">
-  <br><br>
+  <br>
   <br></br>
   Address:<br>
   <input type="text" name="address">
   <br>
+  <br></br>
   City:<br>
   <br></br>
   <input type="text" name="city">

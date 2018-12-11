@@ -67,7 +67,7 @@ public class RideController {
 		ModelAndView mv3 = new ModelAndView("howFar");
 		Event event = selectedEvent(eventId, session);
 
-	//	mv3.addObject("event", event);
+		// mv3.addObject("event", event);
 		session.setAttribute("Event", event);
 		return mv3;
 	}
@@ -93,20 +93,14 @@ public class RideController {
 
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
-		// String eventId = event.getId();
-		// Event event = selectedEvent(eventId, session);
 
-		// 1. Find parking
 		List<Park> dbParking = findParkingFromDatabase(session);
 		List<Park> apiParking = findParkingFromApi(session);
 
-		// 2. Combine parking
 		List<Park> allParking = new ArrayList<>();
 		allParking.addAll(dbParking);
 		allParking.addAll(apiParking);
 
-		// 3. Resort the whole list
-		// TODO
 		orderList(allParking, session);
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
@@ -127,15 +121,6 @@ public class RideController {
 			totalCost = gasCost + ticketPrice;
 		}
 		session.setAttribute("TotalCost", totalCost);
-
-		Double twoTotalCost = totalCost / 2;
-		session.setAttribute("twoTotalCost", twoTotalCost);
-
-		Double threeTotalCost = totalCost / 3;
-		session.setAttribute("threeTotalCost", threeTotalCost);
-
-		Double fourTotalCost = totalCost / 4;
-		session.setAttribute("fourTotalCost", fourTotalCost);
 
 		mv.addObject("event", event);
 		mv.addObject("allParking", allParking);
