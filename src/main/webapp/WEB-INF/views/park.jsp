@@ -35,7 +35,6 @@ background-color: #6C18C4; /* maroon */
 	</h1>
 	<h1>Best Value is ${ValuePark.name }</h1>
 
-	<div>
 		<table>
 			<tr>
 				<th>Distance</th>
@@ -45,6 +44,7 @@ background-color: #6C18C4; /* maroon */
 				<th>Price</th>
 			<tr>
 				<c:forEach var="park" items="${allParking }">
+
 					<tr>
 						<td>${park.distanceDescription}</td>
 						<td>${park.name}</td>
@@ -65,7 +65,7 @@ background-color: #6C18C4; /* maroon */
 			class="btn btn-info"
 			role="button"
 		>Add my own parking</a>
-	</div>
+	
 
 
 	<a href="#myModal" role="button" class="btn" data-toggle="modal">Pricing breakdown</a>
