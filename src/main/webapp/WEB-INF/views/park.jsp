@@ -30,8 +30,8 @@
 ></script>
 <style>
 .jumbotron {
-background-color: #EE6032; /* orange*/
-	color: #FfFfFF /* white */
+background-color: #6C18C4; /* maroon */
+	color: #DEDEDE; /*lime green */
 }
 
 #myTable td {

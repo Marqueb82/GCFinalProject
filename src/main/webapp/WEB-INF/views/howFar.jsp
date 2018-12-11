@@ -1,8 +1,11 @@
+<html>
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/style.css">
 
 <title>Index Page</title>
 
@@ -15,33 +18,37 @@
 </head>
 <style>
 .jumbotron {
-	background-color: #EE6032; /* orange*/
-	color: #FfFfFF /* white */
+	background-color: #6C18C4; /* maroon */
+	color: #DEDEDE; /*lime green */
 }
+/* .howfarr {
+    text-align: right;
+} */
 </style>
 <body>
 
 	<div class="jumbotron">
 		<h1>
-			GoTo <font size="8">${event.name }</font>
+			GoTo
 		</h1>
+		<p><font size="8">${event.name}</font></p>
 	</div>
 
-	<form  class = "howFar2" action="/park">
+	<form action="/park">
+		<div>
 
-		<p id="howfarr" >
-			How far are you willing to walk from your parking spot? <br> <input
-				type="number" min=0 step=.1 name="howFar"> miles<br> <br>How
-			far are you driving to your event? <br> <input type="number"
-				min=0 max=300 name="DrivingDistance"> miles<br> <br>How
-			many people can you fit in your car?<br> <input type="number"
-				min=2 max=8 name="vSize">people <br>
+			<p class = "howfarr">How far are you willing to walk from your parking spot?
+			<br> <input type="number" min=0 step=.1 name="howFar">
+			miles<br> <br>How far are you driving to your event? <br>
+			<input type="number" min=0 max=300 name="DrivingDistance">
+			miles<br> <br>How many people can you fit in your car?<br>
+			<input type="number" min=2 max=8 name="vSize">people <br>
+			</p>
 			<button class="btn btn-danger">Submit</button>
-		</p>
-
+		</div>
 
 		<!-- <input type="submit" value="Submit"> -->
 	</form>
-
+<img alt="" src="">
 </body>
 </html>

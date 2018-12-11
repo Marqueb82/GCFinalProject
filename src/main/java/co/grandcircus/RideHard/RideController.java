@@ -55,7 +55,7 @@ public class RideController {
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		}
 
-		List<Event> events = pr.get_embedded().getEvents();
+		List<Event> events = pr.get_embedded().getEvents(); 
 
 		session.setAttribute("Events", events);
 		return mv;

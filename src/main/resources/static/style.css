@@ -1,8 +1,21 @@
- .howFar2 {
-	position: center;
-	
+ 
+body {background-color: #ddd;}
+ 
+ .container {
+ margin-left: auto;
+    margin-right: auto;
+    width: 8em ;
 	
 }
-
-
+.howfarr {
+    text-align: center;
+}
+.jumbotron.text-center {
+    margin-bottom: 0;
+}
+.container align-center{
+ text-align-last: center;
+}.btn btn-danger{
+	text-align: center;
+} 
 

@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="/style.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Index Page</title>
@@ -19,15 +19,17 @@
 </head>
 <style>
 .jumbotron {
-	background-color: #EE6032; /* orange*/
-	color: #FfFfFF /* white */
+	background-color:#6C18C4; /* purple */
+	color: #DEDEDE; /*gray */
+}
+body{
+background-color: #ddd;
 }
 </style>
 
 <body>
 	<div class="jumbotron text-center">
 		<h1 align="left">GoTo</h1>
-
 	</div>
 	<form action="/" method="post">
 
@@ -35,7 +37,7 @@
 			<font size="3">I want to see</font> <input name="Search"
 				class="input" /><font size="3"> in this city</font> <input
 				name="City" class="input" />
-			<button class="btn btn-danger">Submit</button>
+			<button class="btn btn-warning">Submit</button>
 		</p>
 
 	</form>
@@ -66,21 +68,12 @@
 					<td>${ item.dates.start.localDate }</td>
 					<td>${ item.dates.start.localTime }</td>
 					<td><a href="/howFar/${ item.id }">
-							<button class="btn btn-danger">Select Event</button>
+							<button class="btn btn-warning">Select Event</button>
 					</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 
-	<%-- 	<c:forEach var="event" items="${ pr }">
-		<div>
-			<p>${ event }</p>
-			<p><img src="${ event.image }" /></p>
-		</div>
-	</c:forEach> --%>
-
-
-	<%-- ${ pagedresponse } response of entire object--%>
 </body>
 </html>
