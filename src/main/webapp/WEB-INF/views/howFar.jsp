@@ -28,7 +28,7 @@
 
 <p align = "center">
 	How far are you willing to walk from your parking spot? <br>
-	<input type="number" min=0 step=.1 name="howFar"> miles<br> 
+	<input type="number" min=0 step=.1 name="howFar"> feet<br> 
 	<br>How far are you driving to your event? <br>
 	<input type="number" min=0 max=300 name="DrivingDistance"> miles<br>
 	<br>How many people can you fit in your car?<br>
