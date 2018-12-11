@@ -35,14 +35,6 @@ background-color: #6C18C4; /* maroon */
 	</h1>
 	<h1>Best Value is ${ValuePark.name }</h1>
 
-	<div>
-
-			<table class = "event">
-				<tr>
-					<td>Name</td>
-					<td>Address</td>
-					<td>City</td>
-					<td>Price</td>
 		<table>
 			<tr>
 				<th>Distance</th>
@@ -73,10 +65,10 @@ background-color: #6C18C4; /* maroon */
 			class="btn btn-info"
 			role="button"
 		>Add my own parking</a>
-	</div>
+	
 
 
-	<a href="#myModal" role="button" class="btn" data-toggle="modal">See modal</a>
+	<a href="#myModal" role="button" class="btn" data-toggle="modal">Pricing breakdown</a>
 	
 	<!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -85,7 +77,7 @@ background-color: #6C18C4; /* maroon */
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Possible Cost</h4>
+          <h4 class="modal-title">Possible Cost at ${Name }</h4>
                   </div>
         <div class="modal-body">
 	<table id="myTable">
