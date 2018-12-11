@@ -43,19 +43,41 @@ public class RideController {
 			RedirectAttributes redir) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI"); 
 		TicketMasterAPIResponse pr;
+		Boolean searched = false;
 		if (searchTerm == null && searchCity == null) {
-			searchTerm = " ";
-			searchCity = " ";
+			searchTerm = "";
+			searchCity = "";
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		} else if (searchTerm == null) {
+
+			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
+			}
 			pr = tmAPI.citySearchEvents(searchCity);
 		} else if (searchCity == null) {
+			if (tmAPI.searchEvents(searchTerm).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
+			}
 			pr = tmAPI.searchEvents(searchTerm);
 		} else {
+			if (tmAPI.searchEvents(searchTerm).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
+			}
+			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
+			}
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		}
+		if ((searchTerm.equals("")) && (searchCity.equals(""))) {
+			searched = true;
 
+<<<<<<< HEAD
 		List<Event> events = pr.get_embedded().getEvents(); 
+=======
+		}
+		session.setAttribute("Searched", searched);
+		List<Event> events = pr.get_embedded().getEvents();
+>>>>>>> 345371cd100746220b7e41b93c8ff7469999557b
 
 		session.setAttribute("Events", events);
 		return mv;
@@ -67,7 +89,7 @@ public class RideController {
 		ModelAndView mv3 = new ModelAndView("howFar");
 		Event event = selectedEvent(eventId, session);
 
-		mv3.addObject("event", event);
+		// mv3.addObject("event", event);
 		session.setAttribute("Event", event);
 		return mv3;
 	}
@@ -93,24 +115,18 @@ public class RideController {
 
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
-		// String eventId = event.getId();
-		// Event event = selectedEvent(eventId, session);
-		List<Park> userparking = parkingSpotDistance(session);
 
-		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
-				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
-				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
+		List<Park> dbParking = findParkingFromDatabase(session);
+		List<Park> apiParking = findParkingFromApi(session);
 
-		ArrayList<Park> currentParks = new ArrayList<>();
-		for (Park park : response) {
-			if (park.getPrice() != null) {
-				currentParks.add(park);
-			}
-		}
-		System.out.println(currentParks);
+		List<Park> allParking = new ArrayList<>();
+		allParking.addAll(dbParking);
+		allParking.addAll(apiParking);
+
+		orderList(allParking, session);
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
-		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
+		Double ticketPrice = detail.getPriceRanges()[0].getMin();
 		String range = "$" + detail.getPriceRanges()[0].getMin() + " - $" + detail.getPriceRanges()[0].getMax();
 
 		session.setAttribute("TicketPrice", ticketPrice);
@@ -124,7 +140,7 @@ public class RideController {
 		if (session.getAttribute("ParkPrice") != null) {
 			totalCost = gasCost + (Double) session.getAttribute("ParkPrice") + ticketPrice;
 		} else {
-			totalCost = gasCost  + ticketPrice;
+			totalCost = gasCost + ticketPrice;
 		}
 		session.setAttribute("TotalCost", totalCost);
 
@@ -137,9 +153,11 @@ public class RideController {
 		Double fourTotalCost = totalCost / 4;
 		session.setAttribute("fourTotalCost", fourTotalCost);
 
+		Park valuePark = bestValue(allParking);
+
 		mv.addObject("event", event);
-		mv.addObject("Parks", currentParks);
-		mv.addObject("userparking", userparking);
+		mv.addObject("allParking", allParking);
+		mv.addObject("ValuePark", valuePark);
 		return mv;
 	}
 
@@ -150,38 +168,17 @@ public class RideController {
 
 	@RequestMapping("/add/parkingspot")
 	public ModelAndView addPark(Park parkingSpot, HttpSession session, RedirectAttributes redir) {
-		Double howFar = (Double) session.getAttribute("howFar");
-		ModelAndView mv = new ModelAndView("park");
 		if ((parkingSpot.getLatitude() == null) || (parkingSpot.getLongitude() == null)) {
 			parkingSpot.setLatLong(geo.getLatLong(parkingSpot));
 		}
 		pd.create(parkingSpot);
-
-		Event event = (Event) session.getAttribute("Event");
-		// String eventId = event.getId();
-		// Event event = selectedEvent(eventId, session);
-		List<Park> userparking = parkingSpotDistance(session);
-
-		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
-				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
-				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
-
-		ArrayList<Park> currentParks = new ArrayList<>();
-		for (Park park : response) {
-			if (park.getPrice() != null) {
-				currentParks.add(park);
-			}
-		}
-		System.out.println(currentParks);
-		mv.addObject("event", event);
-		mv.addObject("Parks", currentParks);
-		mv.addObject("userparking", userparking);
-		return mv;
+		return new ModelAndView("redirect:/park");
 	}
 
 	@RequestMapping("/park/choose/")
 	private ModelAndView choose(@RequestParam(name = "Name", required = false) String name,
-			@RequestParam(name = "Price", required = false) Double parkPrice, HttpSession session, RedirectAttributes redir) {
+			@RequestParam(name = "Price", required = false) Double parkPrice, HttpSession session,
+			RedirectAttributes redir) {
 		session.setAttribute("ParkPrice", parkPrice);
 		session.setAttribute("Name", name);
 
@@ -205,14 +202,32 @@ public class RideController {
 		return event;
 	}
 
-	@SuppressWarnings("unused")
-	private List<Park> parkingSpotDistance(HttpSession session) {
-		List<Park> psList = new ArrayList<Park>();
-		List<Park> fullList = pd.findall();
+	private List<Park> findParkingFromApi(HttpSession session) {
 		double howFar = (double) session.getAttribute("howFar");
 		Event event = (Event) session.getAttribute("Event");
+
+		Park[] response = pwas.getPark(event.get_embedded().getVenues().get(0).getLocation().getLatitude(),
+				event.get_embedded().getVenues().get(0).getLocation().getLongitude(),
+				event.getDates().getStart().getLocalDate(), event.getDates().getStart().getLocalTime(), howFar);
+
+		ArrayList<Park> currentParks = new ArrayList<>();
+		for (Park park : response) {
+			if (park.getPrice() != null) {
+				currentParks.add(park);
+			}
+		}
+		return currentParks;
+	}
+
+	private List<Park> findParkingFromDatabase(HttpSession session) {
+		double howFarMiles = (double) session.getAttribute("howFar");
+		double howFarFeet = howFarMiles * 5280;
+		Event event = (Event) session.getAttribute("Event");
+
+		List<Park> psList = new ArrayList<Park>();
+		List<Park> fullList = pd.findall();
 		for (Park park : fullList) {
-			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFar) {
+			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFarFeet) {
 				psList.add(park);
 			}
 		}
@@ -230,13 +245,31 @@ public class RideController {
 		session.invalidate();
 		return new ModelAndView("redirect:/");
 	}
-	
+
 	public List<Park> orderList(List<Park> parks, HttpSession session) {
 		Event event = (Event) session.getAttribute("Event");
-		for (Park park: parks) {
-			park.setStraightLine(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
+		for (Park park : parks) {
+			if ((park.getLatitude() == null) || (park.getLongitude() == null)) {
+				park.setLatLong(geo.getLatLong(park));
+			}
+			park.setDistanceInFeet(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
 		}
 		Collections.sort(parks, new SortByDistance());
 		return parks;
+	}
+
+	public Park bestValue(List<Park> allParking) {
+		Park temp = new Park();
+		Double tempValue = null;
+		for (int i = 0; i < allParking.size(); i++) {
+
+			Double value = (allParking.get(i).getPrice() * allParking.get(i).getPrice())
+					+ (allParking.get(i).getDistanceInFeet());
+			if ((tempValue == null) || (value < tempValue)) {
+				tempValue = value;
+				temp = allParking.get(i);
+			}
+		}
+		return temp;
 	}
 }

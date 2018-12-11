@@ -35,6 +35,7 @@ background-color: #6C18C4; /* maroon */
 		in similar location</h2>
 
 
+<<<<<<< HEAD
 	<form action="/add/parkingspot">
 		<p align="center">
 			<br></br> <br></br> Purchasing Price:<br> <input type="text"
@@ -50,6 +51,41 @@ background-color: #6C18C4; /* maroon */
 	</form>
 	<br></br>
 	<br></br>
+=======
+<form action="/add/parkingspot">
+<p align ="center">
+<br></br>
+<br></br>
+  Purchasing Price:<br>
+  <input type="text" name="price">
+  <br>
+  <br></br>
+  Name:<br>
+  <input type="text" name="name">
+  <br>
+  <br></br>
+  Address:<br>
+  <input type="text" name="address">
+  <br>
+  <br></br>
+  City:<br>
+  <br></br>
+  <input type="text" name="city">
+  <br>
+  Latitude:<br>
+  <br></br>
+  <input type="text" name="latitude">
+  <br>
+  Longitude:<br>
+  <br></br>
+  <input type="text" name="longitude">
+  <br>
+  <input type="submit" value="Submit">
+    </p>
+  </form> 
+<br></br>
+<br></br>
+>>>>>>> 345371cd100746220b7e41b93c8ff7469999557b
 
 	<p align="center">
 		<a href="/park" class="btn btn-danger" role="button">Back</a>

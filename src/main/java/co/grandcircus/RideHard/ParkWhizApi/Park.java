@@ -54,7 +54,6 @@ public class Park {
 	@JsonProperty("_embedded")
 	private Embedded embedded;
 	private Double price; // testing
-	private String dist; // testing
 	private Double latitude; // should be
 	private Double longitude; // should be
 	private String name; // testing
@@ -62,7 +61,7 @@ public class Park {
 	private String city; // testing
 	private Double purchasingprice;
 	@Transient
-	private Double straightLine;
+	private Double distanceInFeet;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -102,14 +101,6 @@ public class Park {
 		this.latitude = latLong[0];
 		this.longitude = latLong[1];
 
-	}
-
-	public String getDist() {
-		return dist;
-	}
-
-	public void setDist(String dist) {
-		this.dist = dist;
 	}
 
 	public Double getLatitude() {
@@ -239,13 +230,9 @@ public class Park {
 		return "Purchasing " + purchaseoption.get(0).getPrice();
 	}
 
-	public String getDistance() {
-		return distance.getStraightline().getDescription();
-	}
-
+	// This is how the API represents distance
 	public void setDistance(Distance distance) {
-		this.dist = distance.getStraightline().getDescription();
-		this.distance = distance;
+		this.distanceInFeet = distance.getStraightline().getFeet();
 	}
 
 	public PriceSegments getPriceSegments() {
@@ -296,12 +283,21 @@ public class Park {
 		return this.address;
 	}
 
-	public Double getStraightLine() {
-		return straightLine;
+	// One unified property for distance
+	public Double getDistanceInFeet() {
+		return distanceInFeet;
 	}
 
-	public void setStraightLine(Double straightLine) {
-		this.straightLine = straightLine;
+	public void setDistanceInFeet(Double distanceInFeet) {
+		this.distanceInFeet = distanceInFeet;
+	}
+
+	public String getDistanceDescription() {
+		if (distanceInFeet > 2000) {
+			return String.format("%.1f mi", (distanceInFeet / 5420));
+		} else {
+			return String.format("%d ft", Math.round(distanceInFeet));
+		}
 	}
 
 }

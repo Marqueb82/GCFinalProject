@@ -25,14 +25,6 @@ public class StraightLine {
 		this.feet = feet;
 	}
 
-	public String getDescription() {
-		if (feet > 2000) {
-			return (feet / 5420) + "mi";
-		} else {
-			return feet + "ft";
-		}
-	}
-
 	@Override
 	public String toString() {
 		return "StraightLine [meters=" + meters + ", feet=" + feet + "]";

@@ -38,6 +38,7 @@ public class Location {
 	}
 
 	public double distanceFrom(Park park) {
+		final double EARTH_RADIUS_FEET = 20900000.0;
 		
 		double latOne = Double.parseDouble(latitude);
 		double longOne = Double.parseDouble(longitude);
@@ -50,7 +51,7 @@ public class Location {
 		// two locations and the north pole
 		double theCos = Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long1 - long2);
 		double arcLength = Math.acos(theCos);
-		return arcLength * 3959.0; //distance of radius in miles. The number stands for radius of the earth in miles. 
+		return arcLength * EARTH_RADIUS_FEET;
 	}
 
 }

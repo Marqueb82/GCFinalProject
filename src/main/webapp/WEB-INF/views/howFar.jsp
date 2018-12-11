@@ -26,7 +26,6 @@
 } */
 </style>
 <body>
-
 	<div class="jumbotron">
 		<h1>
 			GoTo
@@ -46,9 +45,11 @@
 			</p>
 			<button class="btn btn-danger">Submit</button>
 		</div>
+<!-- <input type="submit" value="Submit"> -->
+			</form>
 
-		<!-- <input type="submit" value="Submit"> -->
-	</form>
-<img alt="" src="">
+
+
+
 </body>
 </html>
