@@ -53,6 +53,7 @@
 		<font size="6">${event.name }</font>
 
 	</h1>
+	<h1>Best Value is ${ValuePark.name }</h1>
 
 	<div>
 			<table>

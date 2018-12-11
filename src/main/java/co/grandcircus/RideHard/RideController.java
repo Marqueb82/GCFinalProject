@@ -67,7 +67,7 @@ public class RideController {
 		ModelAndView mv3 = new ModelAndView("howFar");
 		Event event = selectedEvent(eventId, session);
 
-	//	mv3.addObject("event", event);
+		// mv3.addObject("event", event);
 		session.setAttribute("Event", event);
 		return mv3;
 	}
@@ -137,8 +137,10 @@ public class RideController {
 		Double fourTotalCost = totalCost / 4;
 		session.setAttribute("fourTotalCost", fourTotalCost);
 
+		Park valuePark = bestValue(allParking);
 		mv.addObject("event", event);
 		mv.addObject("allParking", allParking);
+		mv.addObject("ValuePark", valuePark);
 		return mv;
 	}
 
@@ -237,5 +239,19 @@ public class RideController {
 		}
 		Collections.sort(parks, new SortByDistance());
 		return parks;
+	}
+
+	public Park bestValue(List<Park> allParking) { 
+		Park temp = new Park();
+		Double tempValue = null;
+		for (int i = 0; i < allParking.size(); i++) {
+						
+			Double value = (allParking.get(i).getPrice() * allParking.get(i).getPrice()) + (allParking.get(i).getDistanceInFeet() * allParking.get(i).getDistanceInFeet());
+			if ((tempValue == null) || (value < tempValue)) {
+				tempValue = value;
+				temp = allParking.get(i);
+			}
+		}
+		return temp;
 	}
 }
