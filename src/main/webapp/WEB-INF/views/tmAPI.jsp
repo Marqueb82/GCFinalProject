@@ -60,7 +60,7 @@ input:hover {
 		<font
 			color="red"
 			size="2"
-		>${ CityMessage }</font>
+		>${ CityMessage } ${EventMessage }</font>
 	</p>
 	<form
 		action="/"
@@ -85,6 +85,7 @@ input:hover {
 
 	</form>
 
+<c:if test="${ not Searched }">
 	<table class="table table-hover">
 		<thead>
 
@@ -134,15 +135,6 @@ input:hover {
 			</c:forEach>
 		</tbody>
 	</table>
-
-	<%-- 	<c:forEach var="event" items="${ pr }">
-		<div>
-			<p>${ event }</p>
-			<p><img src="${ event.image }" /></p>
-		</div>
-	</c:forEach> --%>
-
-
-	<%-- ${ pagedresponse } response of entire object--%>
+</c:if>
 </body>
 </html>

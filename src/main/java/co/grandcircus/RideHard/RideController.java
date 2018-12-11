@@ -43,31 +43,42 @@ public class RideController {
 			RedirectAttributes redir) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		TicketMasterAPIResponse pr;
-		
+		Boolean searched = false;
 		if (searchTerm == null && searchCity == null) {
-			searchTerm = " ";
-			searchCity = " ";
+			searchTerm = "";
+			searchCity = "";
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		} else if (searchTerm == null) {
+
 			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
 				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
 			}
 			pr = tmAPI.citySearchEvents(searchCity);
 		} else if (searchCity == null) {
+			if (tmAPI.searchEvents(searchTerm).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
+			}
 			pr = tmAPI.searchEvents(searchTerm);
 		} else {
+			if (tmAPI.searchEvents(searchTerm).get_embedded() == null) {
+				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
+			}
 			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
 				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
 			}
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
 		}
+		if ((searchTerm.equals("")) && (searchCity.equals(""))) {
+			searched = true;
 
+		}
+		session.setAttribute("Searched", searched);
 		List<Event> events = pr.get_embedded().getEvents();
 
 		session.setAttribute("Events", events);
 		return mv;
 	}
-	
+
 	@RequestMapping("/howFar/{eventId}")
 	public ModelAndView distance(@PathVariable("eventId") String eventId, HttpSession session,
 			RedirectAttributes redir) {
@@ -243,12 +254,13 @@ public class RideController {
 		return parks;
 	}
 
-	public Park bestValue(List<Park> allParking) { 
+	public Park bestValue(List<Park> allParking) {
 		Park temp = new Park();
 		Double tempValue = null;
 		for (int i = 0; i < allParking.size(); i++) {
-						
-			Double value = (allParking.get(i).getPrice() * allParking.get(i).getPrice()) + (allParking.get(i).getDistanceInFeet());
+
+			Double value = (allParking.get(i).getPrice() * allParking.get(i).getPrice())
+					+ (allParking.get(i).getDistanceInFeet());
 			if ((tempValue == null) || (value < tempValue)) {
 				tempValue = value;
 				temp = allParking.get(i);
