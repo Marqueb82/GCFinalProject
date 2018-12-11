@@ -104,7 +104,7 @@ public class RideController {
 		orderList(allParking, session);
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
-		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
+		Double ticketPrice = detail.getPriceRanges()[0].getMin();
 		String range = "$" + detail.getPriceRanges()[0].getMin() + " - $" + detail.getPriceRanges()[0].getMax();
 
 		session.setAttribute("TicketPrice", ticketPrice);
