@@ -93,24 +93,18 @@ public class RideController {
 
 		ModelAndView mv = new ModelAndView("park");
 		Event event = (Event) session.getAttribute("Event");
-		// String eventId = event.getId();
-		// Event event = selectedEvent(eventId, session);
 
-		// 1. Find parking
 		List<Park> dbParking = findParkingFromDatabase(session);
 		List<Park> apiParking = findParkingFromApi(session);
 
-		// 2. Combine parking
 		List<Park> allParking = new ArrayList<>();
 		allParking.addAll(dbParking);
 		allParking.addAll(apiParking);
 
-		// 3. Resort the whole list
-		// TODO
 		orderList(allParking, session);
 
 		TMDetailResponse detail = tmAPI.eventDetails(event.getId());
-		Double ticketPrice = (detail.getPriceRanges()[0].getMax() + detail.getPriceRanges()[0].getMin()) / 2;
+		Double ticketPrice = detail.getPriceRanges()[0].getMin();
 		String range = "$" + detail.getPriceRanges()[0].getMin() + " - $" + detail.getPriceRanges()[0].getMax();
 
 		session.setAttribute("TicketPrice", ticketPrice);
@@ -138,6 +132,7 @@ public class RideController {
 		session.setAttribute("fourTotalCost", fourTotalCost);
 
 		Park valuePark = bestValue(allParking);
+
 		mv.addObject("event", event);
 		mv.addObject("allParking", allParking);
 		mv.addObject("ValuePark", valuePark);
