@@ -138,11 +138,11 @@ public class RideController {
 		}
 		session.setAttribute("TotalCost", totalCost);
 
-		// Park valuePark = bestValue(allParking);
+		Park valuePark = bestValue(allParking);
 
 		mv.addObject("event", event);
 		mv.addObject("allParking", allParking);
-		// mv.addObject("ValuePark", valuePark);
+		mv.addObject("ValuePark", valuePark);
 		return mv;
 	}
 
@@ -212,7 +212,7 @@ public class RideController {
 		List<Park> psList = new ArrayList<Park>();
 		List<Park> fullList = pd.findall();
 		for (Park park : fullList) {
-			if (event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFarFeet) {
+			if ((event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park) <= howFarFeet) && (park.getPrice() != null)) {
 				psList.add(park);
 			}
 		}
