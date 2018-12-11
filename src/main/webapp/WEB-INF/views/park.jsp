@@ -7,6 +7,7 @@
 	uri="http://java.sun.com/jsp/jstl/core"
 	prefix="c"
 %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -126,30 +127,31 @@
 		</tr>
 		<tr>
 			<td>Gas Cost</td>
-			<td>${GasCost }</td>
-			<td>${GasCost / 2 }</td>
-			<td>${GasCost / 3 }</td>
-			<td>${GasCost / 4 }</td>
+			<td><fmt:formatNumber value = "${GasCost }" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${GasCost / 2}" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${GasCost / 3}" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${GasCost / 4}" type = "currency"/></td>
 		</tr>
 		<tr>
 			<td>Parking Cost</td>
-			<td>${ParkPrice }</td>
-			<td>${ParkPrice / 2}</td>
-			<td>${ParkPrice / 3}</td>
-			<td>${ParkPrice / 4}</td>
-		</tr>		<tr>
-			<td>Ticket Price</td>
-			<td>${TicketRange }</td>
-			<td>${TicketRange }</td>
-			<td>${TicketRange }</td>
-			<td>${TicketRange }</td>
+			<td><fmt:formatNumber value = "${ParkPrice }" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${ParkPrice / 2}" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${ParkPrice / 3}" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${ParkPrice / 4}" type = "currency"/></td>
+		</tr>		
+		<tr>
+			<td>Event Price</td>
+			<td>${TicketRange}</td>
+			<td>${TicketRange}</td>
+			<td>${TicketRange}</td>
+			<td>${TicketRange}</td>
 		</tr>
 		<tr>
 			<td>Total Cost</td>
-			<td>${TicketPrice + ParkPrice + GasCost }</td>
-			<td>${TicketPrice + (ParkPrice/2) + (GasCost/2) }</td>
-			<td>${TicketPrice + (ParkPrice/3) + (GasCost/3) }</td>
-			<td>${TicketPrice + (ParkPrice/4) + (GasCost/4) }</td>
+			<td><fmt:formatNumber value = "${TicketPrice + ParkPrice + GasCost }" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${TicketPrice + (ParkPrice/2) + (GasCost/2) }" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${TicketPrice + (ParkPrice/3) + (GasCost/3) }" type = "currency"/></td>
+			<td><fmt:formatNumber value = "${TicketPrice + (ParkPrice/4) + (GasCost/4) }" type = "currency"/></td>
 		</tr>
 	</table>
 	<p>*The average ticket cost is used in calculating total cost.*</p>
