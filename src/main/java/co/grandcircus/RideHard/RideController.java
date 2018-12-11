@@ -43,7 +43,7 @@ public class RideController {
 			RedirectAttributes redir) throws IOException {
 		ModelAndView mv = new ModelAndView("tmAPI");
 		session.removeAttribute("Events"); // clear previous search results
-		
+
 		TicketMasterAPIResponse pr;
 		if (searchTerm == null || searchCity == null) {
 			// No form submission
@@ -70,7 +70,7 @@ public class RideController {
 				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
 			}
 		}
-		
+
 		List<Event> events = pr.get_embedded().getEvents();
 
 		session.setAttribute("Events", events);
@@ -138,20 +138,11 @@ public class RideController {
 		}
 		session.setAttribute("TotalCost", totalCost);
 
-		Double twoTotalCost = totalCost / 2;
-		session.setAttribute("twoTotalCost", twoTotalCost);
-
-		Double threeTotalCost = totalCost / 3;
-		session.setAttribute("threeTotalCost", threeTotalCost);
-
-		Double fourTotalCost = totalCost / 4;
-		session.setAttribute("fourTotalCost", fourTotalCost);
-
-		Park valuePark = bestValue(allParking);
+		// Park valuePark = bestValue(allParking);
 
 		mv.addObject("event", event);
 		mv.addObject("allParking", allParking);
-		mv.addObject("ValuePark", valuePark);
+		// mv.addObject("ValuePark", valuePark);
 		return mv;
 	}
 

@@ -36,15 +36,6 @@ background-color: #6C18C4; /* maroon */
 	<h1>Best Value is ${ValuePark.name }</h1>
 
 	<div>
-<<<<<<< HEAD
-			<table class = "event">
-				<tr>
-					<td>Name</td>
-					<td>Address</td>
-					<td>City</td>
-					<td>Price</td>
-
-=======
 		<table>
 			<tr>
 				<th>Distance</th>
@@ -54,7 +45,6 @@ background-color: #6C18C4; /* maroon */
 				<th>Price</th>
 			<tr>
 				<c:forEach var="park" items="${allParking }">
->>>>>>> 345371cd100746220b7e41b93c8ff7469999557b
 					<tr>
 						<td>${park.distanceDescription}</td>
 						<td>${park.name}</td>
@@ -78,7 +68,7 @@ background-color: #6C18C4; /* maroon */
 	</div>
 
 
-	<a href="#myModal" role="button" class="btn" data-toggle="modal">See modal</a>
+	<a href="#myModal" role="button" class="btn" data-toggle="modal">Pricing breakdown</a>
 	
 	<!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -87,7 +77,7 @@ background-color: #6C18C4; /* maroon */
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Possible Cost</h4>
+          <h4 class="modal-title">Possible Cost at ${Name }</h4>
                   </div>
         <div class="modal-body">
 	<table id="myTable">
