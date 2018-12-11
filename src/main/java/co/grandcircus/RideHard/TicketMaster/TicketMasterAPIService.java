@@ -1,8 +1,11 @@
 package co.grandcircus.RideHard.TicketMaster;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -54,6 +57,7 @@ public class TicketMasterAPIService {
 	
 	public TicketMasterAPIResponse citySearchEvents(String city) {
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=15&apikey=" + apiKey + "&city=" + city + "";
+		System.out.println("citySearchEvents: " + url);
 		TicketMasterAPIResponse response = restTemplate.getForObject(url, TicketMasterAPIResponse.class);
 		return response;
 	}
@@ -61,6 +65,7 @@ public class TicketMasterAPIService {
 	public TicketMasterAPIResponse searchEvents(String keyword, String city) {
 		String url = "https://app.ticketmaster.com/discovery/v2/events.json?size=15&apikey=" + apiKey + "&keyword="
 				+ keyword + "&city=" + city + "";
+		System.out.println("searchEvents: " + url);
 		TicketMasterAPIResponse response = restTemplate.getForObject(url, TicketMasterAPIResponse.class);
 		return response;
 	}

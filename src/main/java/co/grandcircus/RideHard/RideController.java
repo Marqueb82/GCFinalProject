@@ -41,43 +41,37 @@ public class RideController {
 	public ModelAndView tmAPI(@RequestParam(name = "Search", required = false) String searchTerm,
 			@RequestParam(name = "City", required = false) String searchCity, HttpSession session,
 			RedirectAttributes redir) throws IOException {
-		ModelAndView mv = new ModelAndView("tmAPI"); 
+		ModelAndView mv = new ModelAndView("tmAPI");
+		session.removeAttribute("Events"); // clear previous search results
+		
 		TicketMasterAPIResponse pr;
-		Boolean searched = false;
-		if (searchTerm == null && searchCity == null) {
-			searchTerm = "";
-			searchCity = "";
-			pr = tmAPI.searchEvents(searchTerm, searchCity);
-		} else if (searchTerm == null) {
-
-			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
-				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
-			}
+		if (searchTerm == null || searchCity == null) {
+			// No form submission
+			return new ModelAndView("tmAPI");
+		} else if (searchTerm.isEmpty() && searchCity.isEmpty()) {
+			// form submitted empty
+			return new ModelAndView("tmAPI", "EventMessage", "Please enter either an event or city to search.");
+		} else if (searchTerm.isEmpty()) {
+			// city only
 			pr = tmAPI.citySearchEvents(searchCity);
-		} else if (searchCity == null) {
-			if (tmAPI.searchEvents(searchTerm).get_embedded() == null) {
-				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
-			}
-			pr = tmAPI.searchEvents(searchTerm);
-		} else {
-			if (tmAPI.searchEvents(searchTerm).get_embedded() == null) {
-				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
-			}
-			if (tmAPI.citySearchEvents(searchCity).get_embedded() == null) {
+			if (pr.get_embedded() == null) {
 				return new ModelAndView("tmAPI", "CityMessage", "Please enter a valid city name.");
 			}
+		} else if (searchCity.isEmpty()) {
+			// keyword only
+			pr = tmAPI.searchEvents(searchTerm);
+			if (pr.get_embedded() == null) {
+				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
+			}
+		} else {
+			// keyword and city
 			pr = tmAPI.searchEvents(searchTerm, searchCity);
+			if (pr.get_embedded() == null) {
+				return new ModelAndView("tmAPI", "EventMessage", "Sorry, we can't find that event!");
+			}
 		}
-		if ((searchTerm.equals("")) && (searchCity.equals(""))) {
-			searched = true;
-
-<<<<<<< HEAD
-		List<Event> events = pr.get_embedded().getEvents(); 
-=======
-		}
-		session.setAttribute("Searched", searched);
+		
 		List<Event> events = pr.get_embedded().getEvents();
->>>>>>> 345371cd100746220b7e41b93c8ff7469999557b
 
 		session.setAttribute("Events", events);
 		return mv;
