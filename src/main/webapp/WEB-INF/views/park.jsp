@@ -36,15 +36,13 @@ background-color: #6C18C4; /* maroon */
 	<h1>Best Value is ${ValuePark.name }</h1>
 
 	<div>
-<<<<<<< HEAD
+
 			<table class = "event">
 				<tr>
 					<td>Name</td>
 					<td>Address</td>
 					<td>City</td>
 					<td>Price</td>
-
-=======
 		<table>
 			<tr>
 				<th>Distance</th>
@@ -54,7 +52,7 @@ background-color: #6C18C4; /* maroon */
 				<th>Price</th>
 			<tr>
 				<c:forEach var="park" items="${allParking }">
->>>>>>> 345371cd100746220b7e41b93c8ff7469999557b
+
 					<tr>
 						<td>${park.distanceDescription}</td>
 						<td>${park.name}</td>
