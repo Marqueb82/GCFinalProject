@@ -42,15 +42,16 @@ background-color: #6C18C4; /* maroon */
 				<th>Address</th>
 				<th>City</th>
 				<th>Price</th>
-			<tr>
+			</tr>
 				<c:forEach var="park" items="${allParking }">
 
 					<tr>
 						<td>${park.distanceDescription}</td>
 						<td>${park.name}</td>
 						<td>${park.address}</td>
-						<td>${park.city }</td>
-						<td>${park.price }</td>
+						<td>${park.city } </td>
+						
+						<td> <fmt:formatNumber value = "${ park.price }" type = "currency"/></td>
 						<form id="test" method="post" action="/park/choose/">
 							<td>
 								<input name="Name" type="hidden" value="${park.name}">
