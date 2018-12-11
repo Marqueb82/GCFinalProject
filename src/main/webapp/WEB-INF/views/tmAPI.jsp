@@ -54,20 +54,20 @@ body {
 		<table class="table table-hover">
 			<thead>
 				<tr bgcolor="#ccffcc">
-					<th><font size="4">Item Name</font></th>
-					<th><font size="4">Item Venue</font></th>
-					<th><font size="4">Item ID</font></th>
+					<th><font size="4">Event</font></th>
+					<th><font size="4">Venue</font></th>
+					<th><font size="4">City</font></th>
 					<th><font size="4">Date</font></th>
-					<th><font size="4">time</font></th>
+					<th><font size="4">Time</font></th>
 					<th><font size="4"></font></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="item" items="${Events}">
 					<tr bgcolor="#FFFAF8">
-						<td>${item.name}</td>
+						<td>${ item.name}</td>
 						<td>${ item._embedded.venues[0].name }</td>
-						<td>${ item.id }</td>
+						<td>${ item._embedded.venues[0].city.name }</td>
 						<td>${ item.dates.start.localDate }</td>
 						<td>${ item.dates.start.localTime }</td>
 						<td><a href="/howFar/${ item.id }">
