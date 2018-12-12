@@ -33,11 +33,6 @@ public class Park {
 	@JsonProperty("max_end")
 	@Transient
 	private String maxend;
-	// Why is the list singular and the class plural? -ED
-	// the parkwhiz API begins in an array from the beginning,
-	// via David he said it would be best to put this in a list because it would be
-	// easier to manage
-	// ED stay out--😡😡😡😡😡
 	@JsonProperty("purchase_options")
 	@Transient
 	private List<PurchaseOptions> purchaseoption;
@@ -72,7 +67,6 @@ public class Park {
 	private HereCodeAPIService geo;
 
 	public Park() {
-
 	}
 
 	public Park(Long id, Double purchasingprice, String name, String address, String city) {
@@ -82,7 +76,6 @@ public class Park {
 		this.address = address;
 		this.city = city;
 		this.setLatLong(geo.getLatLong(this));
-
 	}
 
 	public Park(Long id, Double purchasingprice, String name, String address, String city, Double latitude,
@@ -100,7 +93,6 @@ public class Park {
 	public void setLatLong(Double[] latLong) {
 		this.latitude = latLong[0];
 		this.longitude = latLong[1];
-
 	}
 
 	public Double getLatitude() {
@@ -204,9 +196,7 @@ public class Park {
 	}
 
 	public List<PurchaseOptions> getPurchaseoption() {
-		
 		return purchaseoption;
-
 	}
 
 	public void setPrice(Double price) {

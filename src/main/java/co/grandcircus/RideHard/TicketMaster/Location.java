@@ -38,7 +38,7 @@ public class Location {
 	}
 
 	public double distanceFrom(Park park) {
-		final double EARTH_RADIUS_FEET = 20900000.0;
+		final double EARTH_RADIUS_FEET = 20902230.9711;
 		
 		double latOne = Double.parseDouble(latitude);
 		double longOne = Double.parseDouble(longitude);

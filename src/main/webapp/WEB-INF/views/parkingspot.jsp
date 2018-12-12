@@ -1,28 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page
+	language="java"
+	contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link
+	rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1"
+>
 <title>Index Page</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link
+	rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+></script>
 
 
 <title>Parking</title>
+<link
+	rel="stylesheet"
+	href="http://localhost:8080/style.css"
+>
 </head>
 <style>
 .jumbotron {
-background-color: #6C18C4; /* maroon */
+	background-color: #6C18C4; /* maroon */
 	color: #DEDEDE; /*lime green */
-	
 }
 </style>
 <body>
@@ -31,28 +46,109 @@ background-color: #6C18C4; /* maroon */
 
 	</div>
 
-	<h2 align="center">This location will be listed for future events
-		in similar location</h2>
+	<h2
+		align="center"
+		id="ex"
+	>This location will be listed for future events in the area.</h2>
+	<main class="flex1">
+	<div class="card1">
+		<form action="/add/parkingspot">
+			<p>
+				Purchasing Price:
+				<span style="float: right;">
+					<input
+						type="text"
+						name="price"				style="text-align: center"
+						
+						class="input"
+						required
+					>
+				</span>
+			</p>
+			<p>
+				Name:
+				<span style="float: right;">
+					<input
+						type="text"
+						name="name"
+						class="input"				style="text-align: center"
+						
+						required
+					>
+				</span>
+			</p>
+			<p>
+				Address:
+				<span style="float: right;">
+					<input
+						type="text"
+						name="address"				style="text-align: center"
+						
+						class="input"
+						required
+					>
+				</span>
+			</p>
+			<p>
+				City:
+				<span style="float: right;">
+					<input
+						type="text"
+						name="city"
+						class="input"				style="text-align: center"
+						
+						required
+					>
+				</span>
+			</p>
+			<p>
+				Latitude:
+				<span style="float: right;">
+					<input
+						type="text"
+						name="latitude"
+						placeholder="(Optional)"				style="text-align: center"
+						
+						class="input"
+					>
+				</span>
+			</p>
+			<p>
+				Longitude:
+				<span style="float: right;">
+					<input
+						type="text"
+						name="longitude"				style="text-align: center"
+						
+						placeholder="(Optional)"
+						class="input"
+					>
+				</span>
+			</p>
+			<p
+				style="padding-top: 35px"
+				align="center"
+			>
+				<span>
+					<input
+						class="btn btn-warning"
+						role="button"
+						type="submit"
+						value="Submit"
+						class="input"
+					>
+				</span>
+				<span>
+					<a
+						href="/park"
+						class="btn btn-warning"
+						role="button"
+					>Back</a>
+				</span>
+			</p>
+		</form>
+	</div>
+	</main>
 
-	<form action="/add/parkingspot">
-		<p align="center">
-			<br></br> <br></br> Purchasing Price:<br> <input type="text"
-				name="price"> <br> <br></br> Name:<br> <input
-				type="text" name="name"> <br>
-			<br> <br></br> Address:<br> <input type="text"
-				name="address"> <br> City:<br> <br></br> <input
-				type="text" name="city"> <br> Latitude:<br> <br></br>
-			<input type="text" name="latitude"> <br> Longitude:<br>
-			<br></br> <input type="text" name="longitude"> <br> <input
-				type="submit" value="Submit">
-		</p>
-	</form>
-	<br></br>
-	<br></br>
-
-
-	<p align="center">
-		<a href="/park" class="btn btn-danger" role="button">Back</a>
-	</p>
 </body>
 </html>

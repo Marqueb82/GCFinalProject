@@ -1,19 +1,80 @@
-body {background-color: #ddd;}
- 
- .container {
- margin-left: auto;
-    margin-right: auto;
-    width: 8em ;
-	
+* {
+	box-sizing: border-box;
 }
+
+body {
+	background-color: #ddd;
+}
+
+a {
+	text-decoration: none;
+}
+
 .howfarr {
-    text-align: center;
-}
-.jumbotron.text-center {
-    margin-bottom: 0;
-}
-.container align-center{
- text-align-last: center;
-}.btn btn-danger{
 	text-align: center;
-} 
+}
+
+.jumbotron.text-center {
+	margin-bottom: 0;
+}
+
+.container align-center {
+	text-align-last: center;
+}
+
+.btn btn-danger {
+	text-align: center;
+}
+
+.card {
+	padding: 40px 40px 40px;
+	min-width: 70px;
+	max-width: 500px;
+	text-align: justify;
+	background: #e4e4e4;
+	color: #ccc;
+	border-radius: 25px;
+}
+
+.flex {
+	display: flex;
+	max-width: 1200px;
+	justify-content: space-around;
+	margin: 0 auto;
+}
+
+main {
+	padding-top: 100px;
+}
+
+.card1 {
+	position: absolute;
+	right: 7%;
+	width: 40%;
+	padding: 40px 40px 40px;
+	text-align: justify;
+	background: #6C18C4;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
+	color: #ccc;
+}
+
+.flex1 {
+	display: flex;
+	max-width: 1200px;
+	justify-content: space-around;
+	padding-top: 36px;
+}
+
+main p {
+	line-height: 1.6em;
+}
+
+#ex {
+	margin:0 auto;
+	background-color: #ccffcc;
+}
+
+input {
+	color: #6C18C4;
+}

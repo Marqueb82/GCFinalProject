@@ -6,6 +6,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ticketmaster.discovery.model.Classification;
 import com.ticketmaster.discovery.model.Date;
+import com.ticketmaster.discovery.model.Event.PriceRange;
 
 public class Event {
 	
@@ -16,14 +17,9 @@ public class Event {
 	@JsonProperty("_embedded")
 	private Embedded1 _embedded;
 	private Date dates;
-	private Classification classification;
+	private Classification[] classifications;
+	private PriceRange[] priceRanges;
 	
-	public Classification getClassification() {
-		return classification;
-	}
-	public void setClassification(Classification classification) {
-		this.classification = classification;
-	}
 	public String getId() {
 		return id;
 	}
@@ -58,6 +54,18 @@ public class Event {
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", _embedded=" + _embedded + "]";
+	}
+	public Classification[] getClassifications() {
+		return classifications;
+	}
+	public void setClassifications(Classification[] classifications) {
+		this.classifications = classifications;
+	}
+	public PriceRange[] getPriceRanges() {
+		return priceRanges;
+	}
+	public void setPriceRanges(PriceRange[] priceRanges) {
+		this.priceRanges = priceRanges;
 	}
 	
 	
