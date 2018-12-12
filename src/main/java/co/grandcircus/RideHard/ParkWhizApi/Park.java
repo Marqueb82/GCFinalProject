@@ -66,9 +66,11 @@ public class Park {
 	@Transient
 	private HereCodeAPIService geo;
 
+	//No argument constructor. 
 	public Park() {
 	}
 
+	//Constructor to handle creation of Park objects based on info entered by user (for database). This constructor in particular populates lat long without the customerneeding to enter them. 
 	public Park(Long id, Double purchasingprice, String name, String address, String city) {
 		this.id = id;
 		this.price = purchasingprice;
@@ -78,9 +80,9 @@ public class Park {
 		this.setLatLong(geo.getLatLong(this));
 	}
 
+	//Constructor to handle creation of Park objects based on info entered by user (for database).
 	public Park(Long id, Double purchasingprice, String name, String address, String city, Double latitude,
 			Double longitude) {
-
 		this.id = id;
 		this.purchasingprice = purchasingprice;
 		this.name = name;
@@ -89,7 +91,7 @@ public class Park {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
-
+	
 	public void setLatLong(Double[] latLong) {
 		this.latitude = latLong[0];
 		this.longitude = latLong[1];
@@ -137,22 +139,6 @@ public class Park {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Park(Long locationId, String starttime, String endtime, String minstart, String maxend,
-			List<PurchaseOptions> purchaseoption, Distance distance, PriceSegments priceSegments,
-			Spaceavailability spaceavailabilty, Embedded embedded) {
-		super();
-		this.locationId = locationId;
-		this.starttime = starttime;
-		this.endtime = endtime;
-		this.minstart = minstart;
-		this.maxend = maxend;
-		this.purchaseoption = purchaseoption;
-		this.distance = distance;
-		this.priceSegments = priceSegments;
-		this.spaceavailabilty = spaceavailabilty;
-		this.embedded = embedded;
 	}
 
 	public Long getLocationId() {
@@ -289,5 +275,4 @@ public class Park {
 			return String.format("%d ft", Math.round(distanceInFeet));
 		}
 	}
-
 }

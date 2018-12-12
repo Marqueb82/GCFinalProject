@@ -17,15 +17,11 @@ public class ParkDao {
 	@PersistenceContext
 	EntityManager em;
 
-	public void create(Park parkingSpot) {
-		em.persist(parkingSpot);
-
+	public void create(Park park) {
+		em.persist(park);
 	}
 
 	public List<Park> findall() {
 		return em.createQuery("From Park", Park.class).getResultList();
 	}
-
-//--------------will need to specify method to return more specific park results
-
 }

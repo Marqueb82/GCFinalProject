@@ -101,7 +101,7 @@ public class RideController {
 			RedirectAttributes redir) {
 
 		// Series of if statements set the user variables to the session and allow for
-		// redicting back to tpark page without losing those variables.
+		// redirect back to park page without losing those variables.
 		if (howFar != null) {
 			session.setAttribute("howFar", howFar);
 		}

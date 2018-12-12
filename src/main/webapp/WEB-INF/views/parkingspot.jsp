@@ -15,7 +15,7 @@
 	name="viewport"
 	content="width=device-width, initial-scale=1"
 >
-<title>Index Page</title>
+<title>Add A Parking Location</title>
 <link
 	rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -27,11 +27,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 ></script>
 
-
-<title>Parking</title>
 <link
 	rel="stylesheet"
-	href="http://localhost:8080/style.css"
+	href="/style.css"
 >
 </head>
 <style>
@@ -58,8 +56,8 @@
 				<span style="float: right;">
 					<input
 						type="text"
-						name="price"				style="text-align: center"
-						
+						name="price"
+						style="text-align: center"
 						class="input"
 						required
 					>
@@ -71,8 +69,8 @@
 					<input
 						type="text"
 						name="name"
-						class="input"				style="text-align: center"
-						
+						class="input"
+						style="text-align: center"
 						required
 					>
 				</span>
@@ -82,8 +80,8 @@
 				<span style="float: right;">
 					<input
 						type="text"
-						name="address"				style="text-align: center"
-						
+						name="address"
+						style="text-align: center"
 						class="input"
 						required
 					>
@@ -95,8 +93,8 @@
 					<input
 						type="text"
 						name="city"
-						class="input"				style="text-align: center"
-						
+						class="input"
+						style="text-align: center"
 						required
 					>
 				</span>
@@ -107,8 +105,8 @@
 					<input
 						type="text"
 						name="latitude"
-						placeholder="(Optional)"				style="text-align: center"
-						
+						placeholder="(Optional)"
+						style="text-align: center"
 						class="input"
 					>
 				</span>
@@ -118,8 +116,8 @@
 				<span style="float: right;">
 					<input
 						type="text"
-						name="longitude"				style="text-align: center"
-						
+						name="longitude"
+						style="text-align: center"
 						placeholder="(Optional)"
 						class="input"
 					>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Charmonman|Indie+Flower|Quicksand');
+
 * {
 	box-sizing: border-box;
 }
@@ -16,6 +18,7 @@ a {
 
 .jumbotron.text-center {
 	margin-bottom: 0;
+	font-family: 'Raleway', sans-serif;
 }
 
 .container align-center {
@@ -34,6 +37,7 @@ a {
 	background: #e4e4e4;
 	color: #ccc;
 	border-radius: 25px;
+	font-family: 'Charmonman', cursive;
 }
 
 .flex {
@@ -71,7 +75,7 @@ main p {
 }
 
 #ex {
-	margin:0 auto;
+	margin: 0 auto;
 	background-color: #ccffcc;
 }
 
