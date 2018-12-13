@@ -54,9 +54,10 @@ main {
 }
 
 .card1 {
-	padding: 20px 40px 40px;
+	align:"right";
+	padding: 40px 40px 40px;
 	min-width: 500px;
-	max-width:600px;
+	max-width:auto;
 	text-align: justify;
 	background: #6C18C4;
 	border-bottom: 4px solid #6C18C4;
@@ -69,6 +70,7 @@ main {
 	max-width: 1200px;
 	justify-content: space-around;
 	padding-top: 36px;
+		flex-direction: row;
 }
 
 .flex3 {
@@ -92,13 +94,15 @@ input {
 
 #crowd {
 
-	min-width: 500px;
 	text-align: justify;
 	background: #6C18C4;
 	border-bottom: 4px solid #6C18C4;
 	border-radius: 25px;
 	color: #ccc;
 }
+
+
+
 .badge badge-primary {
 	padding: 3px 40px 3px;
 	min-width: 70px;

@@ -26,6 +26,10 @@
 	rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 >
+<link
+	rel="stylesheet"
+	href="/style.css"
+>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 ></script>
@@ -46,22 +50,36 @@
 </style>
 </head>
 <body>
+
 	<div class="jumbotron text-center">
 		<h1 align="left">GoTo</h1>
 	</div>
-
-	<h1>
-		<font size="6">${event.name }</font>
-	</h1>
-	<h1>Best Value is ${ValuePark.name }</h1>
-
-	<table>
+	<div align="center">
+		<h1>
+			<font size="6">${event.name }</font>
+		</h1>
+		<a
+			href="/parkingspot"
+			class="btn btn-info"
+			role="button"
+		>Add my own parking</a>
+		<a
+			href="#myModal"
+			role="button"
+			class="btn btn-info"
+			data-toggle="modal"
+		>Pricing breakdown</a>
+	</div>
+	<main class="flex3">
+	<table class="flex">
 		<tr>
 			<th>Distance</th>
 			<th>Name</th>
 			<th>Address</th>
 			<th>City</th>
-			<th></th>
+			<th> </th>
+			<th> </th>
+			<th> </th>
 			<th>Price</th>
 		</tr>
 		<c:forEach
@@ -126,20 +144,12 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<a
-		href="/parkingspot"
-		class="btn btn-info"
-		role="button"
-	>Add my own parking</a>
 
-
-
-	<a
-		href="#myModal"
-		role="button"
-		class="btn"
-		data-toggle="modal"
-	>Pricing breakdown</a>
+	<span class="card1">
+		<h1>The closest spot is at ${ClosePark.name }.</h1>
+		<h1>The least expensive spot is at ${CheapPark.name }.</h1>
+		<h1>Best Value overall is at ${ValuePark.name }!</h1>
+	</span></main>
 
 	<!-- Modal -->
 	<div

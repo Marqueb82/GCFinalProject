@@ -49,6 +49,7 @@
 		id="ex"
 	>This location will be listed for future events in the area.</h2>
 	<main class="flex1">
+	<img src="/images/spot.png" id="crowd">
 	<div class="card1">
 		<form action="/add/parkingspot">
 			<p>
