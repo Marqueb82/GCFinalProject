@@ -20,7 +20,7 @@
 	name="viewport"
 	content="width=device-width, initial-scale=1"
 >
-<title>Find Your Passion</title>
+<title>GoTo Your Passion</title>
 <link
 	rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -129,7 +129,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<main class="flex">
+			<maini class="flex">
 			<div class="card">
 				<h2>Find your passion.</h2>
 			</div>
@@ -139,7 +139,7 @@
 			<div class="card">
 				<h2>Find your night.</h2>
 			</div>
-			</main>
+			</maini>
 		</c:otherwise>
 	</c:choose>
 </body>

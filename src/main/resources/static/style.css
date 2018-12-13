@@ -49,6 +49,20 @@ a {
 	margin: 0 auto;
 }
 
+maini {
+	padding-top: 3%;
+}
+
+mainp {
+	padding-top: 6%;
+	padding-left: 15%;
+}
+
+#table1 {
+	padding-left: 2%;
+	min-width: 55%;
+}
+
 main {
 	padding-top: 3%;
 	position: absolute;
@@ -56,6 +70,18 @@ main {
 }
 
 .card1 {
+	align: "right";
+	padding: 40px 0px 40px;
+	min-width: 500px;
+	max-width: auto;
+	text-align: justify;
+	background: #6C18C4;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
+	color: #ccc;
+}
+
+.card2 {
 	align: "right";
 	padding: 40px 0px 40px;
 	min-width: 500px;
@@ -95,16 +121,35 @@ input {
 	color: #6C18C4;
 }
 
-#image1{
-  position: absolute;
-  top: 61%;
-  -ms-transform: translateY(-39%);
-  transform: translateY(-39%);
+#image1 {
+	position: absolute;
+	top: 61%;
+	-ms-transform: translateY(-39%);
+	transform: translateY(-39%);
+}
+
+#image2 {
+	position: absolute;
+	top: 70%;
+	-ms-transform: translateY(-30%);
+	transform: translateY(-30%);
+}
+
+#results {
+	align: "right";
+	padding: 40px 0px 40px;
+	min-width: 500px;
+	max-width: auto;
+	text-align: justify;
+	background: #6C18C4;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
+	color: #ccc;
 }
 
 #crowd {
 	position: relative;
-	left:15%;
+	left: 15%;
 	text-align: justify;
 	border-bottom: 4px solid #6C18C4;
 	border-radius: 25px;
@@ -112,7 +157,23 @@ input {
 	text-align: justify;
 	border-bottom: 4px solid #6C18C4;
 	border-radius: 25px;
+	text-align: justify;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
+	max-width: 45%;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
 	max-width: 60%;
+	max-height: 60%;
+}
+
+#spot {
+	position: relative;
+	left: 15%;
+	text-align: justify;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
+	max-width: 45%;
 	max-height: 60%;
 }
 

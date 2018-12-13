@@ -48,106 +48,107 @@
 		align="center"
 		id="ex"
 	>This location will be listed for future events in the area.</h2>
-	<main class="flex1">
-	<img src="/images/spot.png" id="crowd">
-	<div class="card1">
-		<form action="/add/parkingspot">
-			<p>
-				Purchasing Price:
-				<span style="float: right;">
+	<section class="flex3">
+		<span id="image2"><img
+			src="/images/spot.png"
+			id="spot"
+		></span>
+		<main>
+		<div class="card1">
+			<form action="/add/parkingspot">
+				<p class="howfarr">
+					Purchasing Price:
+					<br>
 					<input
 						type="text"
+						class="input"
+						style="text-align: center"
 						name="price"
-						style="text-align: center"
-						class="input"
 						required
 					>
-				</span>
-			</p>
-			<p>
-				Name:
-				<span style="float: right;">
+					<br>
+					<br>
+					Name:
+					<br>
 					<input
 						type="text"
+						class="input"
+						style="text-align: center"
 						name="name"
-						class="input"
-						style="text-align: center"
 						required
 					>
-				</span>
-			</p>
-			<p>
-				Address:
-				<span style="float: right;">
+					<br>
+					<br>
+					Address:
+					<br>
 					<input
 						type="text"
+						class="input"
+						style="text-align: center"
 						name="address"
-						style="text-align: center"
-						class="input"
 						required
 					>
-				</span>
-			</p>
-			<p>
-				City:
-				<span style="float: right;">
+					<br>
+					<br>
+					City:
+					<br>
 					<input
 						type="text"
+						class="input"
+						style="text-align: center"
 						name="city"
-						class="input"
-						style="text-align: center"
 						required
 					>
-				</span>
-			</p>
-			<p>
-				Latitude:
-				<span style="float: right;">
+					<br>
+					<br>
+					Latitude:
+					<br>
 					<input
 						type="text"
+						class="input"
+						style="text-align: center"
 						name="latitude"
 						placeholder="(Optional)"
-						style="text-align: center"
-						class="input"
 					>
-				</span>
-			</p>
-			<p>
-				Longitude:
-				<span style="float: right;">
+					<br>
+					<br>
+					Longitude:
+					<br>
 					<input
 						type="text"
-						name="longitude"
+						class="input"
 						style="text-align: center"
+						name="longitude"
 						placeholder="(Optional)"
-						class="input"
 					>
-				</span>
-			</p>
-			<p
-				style="padding-top: 35px"
-				align="center"
-			>
-				<span>
-					<input
-						class="btn btn-warning"
-						role="button"
-						type="submit"
-						value="Submit"
-						class="input"
-					>
-				</span>
-				<span>
-					<a
-						href="/park"
-						class="btn btn-warning"
-						role="button"
-					>Back</a>
-				</span>
-			</p>
-		</form>
-	</div>
-	</main>
+					<br>
+					<br>
+					Longitude:
+				<p
+					style="padding-top: 35px"
+					align="center"
+				>
+					<span>
+						<input
+							class="btn btn-warning"
+							role="button"
+							type="submit"
+							value="Submit"
+							class="input"
+						>
+					</span>
+					<span>
+						<a
+							href="/park"
+							class="btn btn-warning"
+							role="button"
+						>Back</a>
+					</span>
+				</p>
+			</form>
+		</div>
+		</main>
+	</section>
 
 </body>
 </html>

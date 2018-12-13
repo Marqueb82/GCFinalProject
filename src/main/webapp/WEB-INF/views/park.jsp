@@ -16,7 +16,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Park</title>
+<title>GoTo Your Place</title>
 <meta charset="utf-8">
 <meta
 	name="viewport"
@@ -52,7 +52,7 @@
 <body>
 
 	<div class="jumbotron text-center">
-		<h1 align="left">GoTo</h1>
+		<h1 align="left">GoTo:</h1>
 	</div>
 	<div align="center">
 		<h1>
@@ -60,96 +60,103 @@
 		</h1>
 		<a
 			href="/parkingspot"
-			class="btn btn-info"
+			class="btn btn-success"
 			role="button"
 		>Add my own parking</a>
 		<a
 			href="#myModal"
 			role="button"
-			class="btn btn-info"
+			class="btn btn-success"
 			data-toggle="modal"
 		>Pricing breakdown</a>
+		<a
+			href="/back"
+			class="btn btn-success"
+			role="button"
+		>Start Over</a>
 	</div>
-	<main class="flex3">
-	<table class="flex">
-		<tr>
-			<th>Distance</th>
-			<th>Name</th>
-			<th>Address</th>
-			<th>City</th>
-			<th> </th>
-			<th> </th>
-			<th> </th>
-			<th>Price</th>
-		</tr>
-		<c:forEach
-			var="park"
-			items="${allParking }"
-		>
 
+
+	<Section class="flex3">
+		<table id="table1">
 			<tr>
-				<td>${park.distanceDescription}</td>
-				<td>${park.name}</td>
-				<td>${park.address}</td>
-				<td>${park.city }</td>
-				<td></td>
-				<td>
-					<c:if test="${ CheapPark.name eq park.name }">
-						<a
-							href="#"
-							class="badge badge-warning"
-						>Best Price!</a>
-					</c:if>
-					<c:if test="${ ValuePark.name eq park.name }">
-						<a
-							href="#"
-							class="badge badge-warning"
-						>Best Value!!</a>
-					</c:if>
-					<c:if test="${ ClosePark.name eq park.name }">
-						<a
-							href="#"
-							class="badge badge-warning"
-						>Closest Spot!</a>
-					</c:if>
-				</td>
-				<td></td>
-				<td>
-					<fmt:formatNumber
-						value="${ park.price }"
-						type="currency"
-					/>
-				</td>
-				<td>
-					<form
-						id="test"
-						method="post"
-						action="/park/choose/"
-					>
-
-						<input
-							name="Name"
-							type="hidden"
-							value="${park.name}"
-						>
-						<button
-							class="btn btn-success"
-							name="Price"
-							type="submit"
-							value="${park.price}"
-						>Select</button>
-					</form>
-				</td>
-
+				<th>Distance</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>City</th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th>Price</th>
 			</tr>
-		</c:forEach>
-	</table>
+			<c:forEach
+				var="park"
+				items="${allParking }"
+			>
+				<tr>
+					<td>${park.distanceDescription}</td>
+					<td>${park.name}</td>
+					<td>${park.address}</td>
+					<td>${park.city }</td>
+					<td></td>
+					<td>
+						<c:if test="${ CheapPark.address eq park.address }">
+							<a
+								href="#"
+								class="badge badge-warning"
+							>Best Price!</a>
+						</c:if>
+						<c:if test="${ ValuePark.address eq park.address }">
+							<a
+								href="#"
+								class="badge badge-warning"
+							>Best Value!!</a>
+						</c:if>
+						<c:if test="${ ClosePark.address eq park.address }">
+							<a
+								href="#"
+								class="badge badge-warning"
+							>Closest Spot!</a>
+						</c:if>
+					</td>
+					<td></td>
+					<td>
+						<fmt:formatNumber
+							value="${ park.price }"
+							type="currency"
+						/>
+					</td>
+					<td>
+						<form
+							id="test"
+							method="post"
+							action="/park/choose/"
+						>
 
-	<span class="card1">
-		<h1>The closest spot is at ${ClosePark.name }.</h1>
-		<h1>The least expensive spot is at ${CheapPark.name }.</h1>
-		<h1>Best Value overall is at ${ValuePark.name }!</h1>
-	</span></main>
+							<input
+								name="Name"
+								type="hidden"
+								value="${park.name}"
+							>
+							<button
+								class="btn btn-success"
+								name="Price"
+								type="submit"
+								value="${park.price}"
+							>Select</button>
+						</form>
+					</td>
+
+				</tr>
+			</c:forEach>
+		</table>
+		<mainp> <div class="card2">
+			<h1>The closest spot is at ${ClosePark.name }.</h1>
+			<h1>The least expensive spot is at ${CheapPark.name }.</h1>
+			<h1>The best value overall is at ${ValuePark.name }!</h1>
+		</div>
+		</mainp>
+	</section>
 
 	<!-- Modal -->
 	<div
@@ -280,6 +287,6 @@
 		</div>
 	</div>
 
-	<a href="/back">back to start</a>
+
 </body>
 </html>

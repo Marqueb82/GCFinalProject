@@ -48,12 +48,12 @@ public class Park {
 	@Transient
 	@JsonProperty("_embedded")
 	private Embedded embedded;
-	private Double price; // testing
-	private Double latitude; // should be
-	private Double longitude; // should be
-	private String name; // testing
-	private String address; // testing
-	private String city; // testing
+	private Double price;
+	private Double latitude; 
+	private Double longitude; 
+	private String name; 
+	private String address; 
+	private String city; 
 	private Double purchasingprice;
 	@Transient
 	private Double distanceInFeet;
