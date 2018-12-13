@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.grandcircus.RideHard.HereCodeAPI.HereCodeAPIService;
 import co.grandcircus.RideHard.ParkDao.ParkDao;
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.TicketMaster.Event;
@@ -31,7 +32,10 @@ public class RideController {
 	@Autowired
 	private TicketMasterAPIService tmAPI;
 	@Autowired
-	private ForMath math;
+	private ForMath math;	
+	@Autowired
+	private HereCodeAPIService geo;
+
 
 	// Controller for index page. Accepts parameters from search fields, maintains
 	// the session.
@@ -181,6 +185,7 @@ public class RideController {
 	// Controller to direct back to main results page at park.jsp.
 	@RequestMapping("/add/parkingspot")
 	public ModelAndView addPark(Park parkingSpot, HttpSession session, RedirectAttributes redir) {
+		parkingSpot.setLatLong(geo.getLatLong(parkingSpot));
 		// Adds parking spot object to the database.
 		pd.create(parkingSpot);
 		// Redirects us back to the results at /park.
