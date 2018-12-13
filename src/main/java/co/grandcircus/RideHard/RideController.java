@@ -126,8 +126,12 @@ public class RideController {
 		allParking.addAll(apiParking);
 
 		allParking.sort((h1, h2) -> h1.getPrice().compareTo(h2.getPrice()));
+		if (allParking.isEmpty()) {
+			return new ModelAndView("index", "EventMessage",
+					"We're sorry, there isn't any parking for that location. Maybe you'd consider adding one.");
+		}
 		Park cheapestPark = allParking.get(0);
-		
+
 		// Calls the method to order the list.
 		math.orderList(allParking, session);
 
@@ -158,7 +162,7 @@ public class RideController {
 		Park valuePark = math.bestValue(allParking);
 		Park closestPark = allParking.get(0);
 		mv.addObject("allParking", allParking);
-		
+
 		// Adds remaining attributes to the JSP. Should refactor to add all allowable
 		// objects to be placed this way, rather than adding them to the session.
 		mv.addObject("event", event);

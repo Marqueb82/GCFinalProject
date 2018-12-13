@@ -43,6 +43,17 @@ a {
 	font-family: 'Shadows Into Light', cursive;
 }
 
+#disclaim {
+	padding: 4px 4px 4px;
+	max-width: 500px;
+	align: center;
+	text-align: center;
+	background: #e4e4e4;
+	color: #ccc;
+	border-radius: 25px;
+	margin: 0 auto;
+}
+
 .flex {
 	display: flex;
 	max-width: 1200px;

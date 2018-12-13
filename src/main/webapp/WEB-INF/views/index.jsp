@@ -47,9 +47,7 @@
 
 <body>
 	<div class="jumbotron text-center">
-		<h1 align="left">
-			GoTo
-		</h1>
+		<h1 align="left">GoTo</h1>
 	</div>
 	<p align="center">
 		<font
@@ -61,15 +59,17 @@
 		action="/"
 		method="post"
 	>
-		<p align="center" style="padding:5%">
+		<p
+			align="center"
+			style="padding: 5%"
+		>
 			<font size="3">I want to see</font>
 			<input
 				name="Search"
 				id="input"
-								style="text-align: center"
-				
+				style="text-align: center"
 			/>
-			<font size="3"> in this city</font>
+			<font size="3"> in this city*</font>
 			<input
 				name="City"
 				class="input"
@@ -77,10 +77,7 @@
 				placeholder="(Optional)"
 			/>
 			<button class="btn btn-warning">Submit</button>
-
-
 		</p>
-
 	</form>
 	<c:choose>
 		<c:when test="${ not empty Events }">
@@ -142,5 +139,7 @@
 			</maini>
 		</c:otherwise>
 	</c:choose>
+	<br><br>
+	<p align="center" id="disclaim">*GoTo is presently US-only.</p>
 </body>
 </html>

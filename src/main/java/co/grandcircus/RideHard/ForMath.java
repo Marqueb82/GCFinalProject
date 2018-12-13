@@ -121,7 +121,7 @@ public class ForMath {
 	public List<Event> filterTimeless(List<Event> events) {
 		List<Event> filteredEvents = new ArrayList<Event>();
 		for (Event event : events) {
-			if (!event.getDates().getStart().getTimeTBA()) {
+			if (event.getDates().getStart().getLocalTime() != null) {
 				filteredEvents.add(event);
 			}
 		}
