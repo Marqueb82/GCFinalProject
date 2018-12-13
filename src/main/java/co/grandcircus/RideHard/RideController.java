@@ -125,6 +125,9 @@ public class RideController {
 		allParking.addAll(dbParking);
 		allParking.addAll(apiParking);
 
+		allParking.sort((h1, h2) -> h1.getPrice().compareTo(h2.getPrice()));
+		Park cheapestPark = allParking.get(0);
+		
 		// Calls the method to order the list.
 		math.orderList(allParking, session);
 
@@ -153,11 +156,14 @@ public class RideController {
 
 		// Produces best value Park object based on cost and distance.
 		Park valuePark = math.bestValue(allParking);
-
+		Park closestPark = allParking.get(0);
+		mv.addObject("allParking", allParking);
+		
 		// Adds remaining attributes to the JSP. Should refactor to add all allowable
 		// objects to be placed this way, rather than adding them to the session.
 		mv.addObject("event", event);
-		mv.addObject("allParking", allParking);
+		mv.addObject("CheapPark", cheapestPark);
+		mv.addObject("ClosePark", closestPark);
 		mv.addObject("ValuePark", valuePark);
 		return mv;
 	}

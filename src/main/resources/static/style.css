@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Charmonman|Indie+Flower|Quicksand');
+@import
+	url('https://fonts.googleapis.com/css?family=Charmonman|Indie+Flower|Krona+One|Quicksand|Shadows+Into+Light')
+	;
 
 * {
 	box-sizing: border-box;
@@ -18,7 +20,7 @@ a {
 
 .jumbotron.text-center {
 	margin-bottom: 0;
-	font-family: 'Raleway', sans-serif;
+	font-family: 'Krona One', sans-serif, light 300;
 }
 
 .container align-center {
@@ -37,7 +39,7 @@ a {
 	background: #e4e4e4;
 	color: #ccc;
 	border-radius: 25px;
-	font-family: 'Charmonman', cursive;
+	font-family: 'Shadows Into Light', cursive;
 }
 
 .flex {
@@ -48,14 +50,13 @@ a {
 }
 
 main {
-	padding-top: 100px;
+	padding-top: 3%;
 }
 
 .card1 {
-	position: absolute;
-	right: 7%;
-	width: 40%;
-	padding: 40px 40px 40px;
+	padding: 20px 40px 40px;
+	min-width: 500px;
+	max-width:600px;
 	text-align: justify;
 	background: #6C18C4;
 	border-bottom: 4px solid #6C18C4;
@@ -70,6 +71,12 @@ main {
 	padding-top: 36px;
 }
 
+.flex3 {
+	display: flex;
+	flex-direction: row;
+		max-width: 1200px;
+}
+
 main p {
 	line-height: 1.6em;
 }
@@ -81,4 +88,23 @@ main p {
 
 input {
 	color: #6C18C4;
+}
+
+#crowd {
+
+	min-width: 500px;
+	text-align: justify;
+	background: #6C18C4;
+	border-bottom: 4px solid #6C18C4;
+	border-radius: 25px;
+	color: #ccc;
+}
+.badge badge-primary {
+	padding: 3px 40px 3px;
+	min-width: 70px;
+	max-width: 500px;
+	text-align: justify;
+	background: #e4e4e4;
+	color: #ccc;
+	border-radius: 25px;
 }

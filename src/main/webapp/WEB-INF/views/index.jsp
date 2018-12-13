@@ -61,7 +61,7 @@
 		action="/"
 		method="post"
 	>
-		<p align="center">
+		<p align="center" style="padding:5%">
 			<font size="3">I want to see</font>
 			<input
 				name="Search"

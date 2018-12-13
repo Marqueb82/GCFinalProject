@@ -2,7 +2,6 @@ package co.grandcircus.RideHard;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,10 +16,11 @@ import co.grandcircus.RideHard.ParkDao.ParkDao;
 import co.grandcircus.RideHard.ParkWhizApi.Park;
 import co.grandcircus.RideHard.ParkWhizApi.ParkWhizAPIService;
 import co.grandcircus.RideHard.TicketMaster.Event;
+import co.grandcircus.RideHard.utils.ParkingByDistanceComparator;
 
 //Class to contain the math and science portions of the data. These methods process the data, so the controller class can hold only controllers.
 @Component
-public class ForMath implements Comparator<Park> {
+public class ForMath {
 
 
 	// Class fields.
@@ -33,10 +33,6 @@ public class ForMath implements Comparator<Park> {
 	@Autowired
 	private HereCodeAPIService geo;
 	
-	//Method to sort PArk objects by distance. Called as part of comparator.
-	public int compare(Park a, Park b) {
-		return (int) (a.getDistanceInFeet() - b.getDistanceInFeet());
-	}
 	// Method to try to account for various prices without expensive prices pulling
 	// the average price out of whack.
 	Double reasonablePrice(PriceRange priceRange) {
@@ -116,7 +112,7 @@ public class ForMath implements Comparator<Park> {
 			park.setDistanceInFeet(event.get_embedded().getVenues().get(0).getLocation().distanceFrom(park));
 		}
 		// Sorts the list based on distance from event location.
-		Collections.sort(parks, new ForMath());
+		Collections.sort(parks, new ParkingByDistanceComparator());
 		return parks;
 	}
 
@@ -152,4 +148,6 @@ public class ForMath implements Comparator<Park> {
 		}
 		return temp;
 	}
+	
+	
 }

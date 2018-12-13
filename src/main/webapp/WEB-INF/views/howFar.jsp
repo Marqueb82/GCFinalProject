@@ -39,60 +39,64 @@
 			<font size="8">${event.name}</font>
 		</p>
 	</div>
-	<main class="flex1">
-	<div class="card1">
-		<form action="/park">
-			<div>
+	<section class="flex3">
+		<img
+			src="/images/test.jpg"
+			id="crowd"
+		>
+		<main>
+		<div class="card1">
+			<form action="/park">
+				<div>
 
-				<p class="howfarr">
-					How far are you willing to walk from your parking spot?
-					<br>
-					<input
-						type="number"
-						min=0
-						class="input"
-						style="text-align: center"
-						step=.1
-						name="howFar"
-					>
-					miles
-					<br>
-					<br>
-					How far are you driving to your event?
-					<br>
-					<input
-						type="number"
-						min=0
-						max=300
-						class="input"
-						style="text-align: center"
-						name="DrivingDistance"
-					>
-					miles
-					<br>
-					<br>
-					How many people can you fit in your car?
-					<br>
-					<input
-						type="number"
-						min=2
-						max=8
-						class="input"
-						style="text-align: center"
-						name="vSize"
-					>
-					people
-					<br>
-				</p>
-				<p align="center">
-					<button class="btn btn-warning">Submit</button>
-				</p>
-			</div>
-
-		</form>
-	</div>
-	</main>
-
+					<p class="howfarr">
+						How far are you willing to walk from your parking spot?
+						<br>
+						<input
+							type="number"
+							min=0
+							class="input"
+							style="text-align: center"
+							step=.1
+							name="howFar"
+						>
+						miles
+						<br>
+						<br>
+						How far are you driving to your event?
+						<br>
+						<input
+							type="number"
+							min=0
+							max=300
+							class="input"
+							style="text-align: center"
+							name="DrivingDistance"
+						>
+						miles
+						<br>
+						<br>
+						How many people can you fit in your car?
+						<br>
+						<input
+							type="number"
+							min=2
+							max=8
+							class="input"
+							style="text-align: center"
+							name="vSize"
+						>
+						people
+						<br>
+					</p>
+					<p align="center">
+						<button class="btn btn-warning">Submit</button>
+					</p>
+				</div>
+			</form>
+		</div>
+		</main>
+	</section>
 
 
 </body>
