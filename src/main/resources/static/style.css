@@ -1,5 +1,5 @@
 @import
-	url('https://fonts.googleapis.com/css?family=Charmonman|Indie+Flower|Krona+One|Quicksand|Shadows+Into+Light')
+	url('https://fonts.googleapis.com/css?family=Charmonman|Indie+Flower|Krona+One|Raleway|Shadows+Into+Light')
 	;
 
 * {
@@ -8,6 +8,7 @@
 
 body {
 	background-color: #ddd;
+	font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -60,7 +61,7 @@ mainp {
 
 #table1 {
 	padding-left: 2%;
-	min-width: 55%;
+	min-width: 100%;
 }
 
 main {
@@ -82,15 +83,26 @@ main {
 }
 
 .card2 {
-	align: "right";
 	padding: 40px 0px 40px;
-	min-width: 500px;
+	min-width: auto;
 	max-width: auto;
 	text-align: justify;
 	background: #6C18C4;
 	border-bottom: 4px solid #6C18C4;
 	border-radius: 25px;
 	color: #ccc;
+	text-align: center;
+}
+
+.card3 {
+	padding: 40px 0px 40px;
+	min-width: auto;
+	max-width: auto;
+	text-align: justify;
+	background: #6C18C4;
+	border-radius: 50%;
+	color: #ccc;
+	text-align: center;
 }
 
 .flex1 {

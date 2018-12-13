@@ -75,18 +75,24 @@
 			role="button"
 		>Start Over</a>
 	</div>
+	<div class="container">
+		<mainp>
+		<div class="card3">
+			<h2>The closest spot is at ${ClosePark.name }.</h2>
+			<h2>The least expensive spot is at ${CheapPark.name }.</h2>
+			<h1>The best value overall is at ${ValuePark.name }!</h1>
+		</div>
+		</mainp>
 
-
-	<Section class="flex3">
-		<table id="table1">
+		<table
+			class="table"
+			id="table1"
+		>
 			<tr>
 				<th>Distance</th>
 				<th>Name</th>
 				<th>Address</th>
 				<th>City</th>
-				<th></th>
-				<th></th>
-				<th></th>
 				<th>Price</th>
 			</tr>
 			<c:forEach
@@ -95,10 +101,6 @@
 			>
 				<tr>
 					<td>${park.distanceDescription}</td>
-					<td>${park.name}</td>
-					<td>${park.address}</td>
-					<td>${park.city }</td>
-					<td></td>
 					<td>
 						<c:if test="${ CheapPark.address eq park.address }">
 							<a
@@ -118,8 +120,12 @@
 								class="badge badge-warning"
 							>Closest Spot!</a>
 						</c:if>
+						${park.name}
 					</td>
-					<td></td>
+					<td>${park.address}</td>
+					<td>${park.city }</td>
+
+
 					<td>
 						<fmt:formatNumber
 							value="${ park.price }"
@@ -150,13 +156,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<mainp> <div class="card2">
-			<h1>The closest spot is at ${ClosePark.name }.</h1>
-			<h1>The least expensive spot is at ${CheapPark.name }.</h1>
-			<h1>The best value overall is at ${ValuePark.name }!</h1>
-		</div>
-		</mainp>
-	</section>
+	</div>
+
 
 	<!-- Modal -->
 	<div
