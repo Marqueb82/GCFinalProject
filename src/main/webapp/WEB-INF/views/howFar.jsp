@@ -14,9 +14,6 @@
 	rel="stylesheet"
 	href="/style.css"
 >
-
-<title>Index Page</title>
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
 ></script>
@@ -24,7 +21,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 ></script>
 
-<title>GoTo: Event Details</title>
+<title>GoTo: Details</title>
 </head>
 <style>
 .jumbotron {
@@ -40,10 +37,10 @@
 		</p>
 	</div>
 	<section class="flex3">
-		<img
+		<span id="image1"><img
 			src="/images/test.jpg"
 			id="crowd"
-		>
+		></span>
 		<main>
 		<div class="card1">
 			<form action="/park">
